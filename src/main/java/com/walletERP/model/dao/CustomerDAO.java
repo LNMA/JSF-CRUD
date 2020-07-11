@@ -3,9 +3,9 @@ package com.walletERP.model.dao;
 import com.walletERP.model.entity.Customer;
 
 public interface CustomerDAO {
-    int createCustomer(Customer customer);
+    Long createCustomer(Customer customer);
 
-    int updateCustomer(Customer customer);
+    int updateCustomerByID(Customer customer);
     
-    int deleteCustomer(Customer customer);
+    int deleteCustomerByID(Customer customer);
 }

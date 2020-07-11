@@ -13,7 +13,7 @@ public class BeansFactory {
     @Scope("prototype")
     public ApplicationContext buildContext(){
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-        context.scan("com.louay.model");
+        context.scan("com.walletERP.model");
         context.refresh();
         return context;
     }

@@ -1,7 +1,12 @@
 package com.walletERP.model.entity;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import java.util.Objects;
 
+@Component
+@Scope("prototype")
 public class Customer {
     private Long customerID;
     private String customerName;

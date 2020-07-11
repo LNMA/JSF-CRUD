@@ -1,10 +1,17 @@
 package com.walletERP.model.entity;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+import java.sql.Timestamp;
 import java.util.Objects;
 
+@Component
+@Scope("prototype")
 public class CustomerStatus {
     private Customer customer;
-    private String taxNum;
+    private boolean isActive;
+    private java.sql.Timestamp lastModify;
 
     public CustomerStatus() {
     }
@@ -17,12 +24,20 @@ public class CustomerStatus {
         this.customer = customer;
     }
 
-    public String getTaxNum() {
-        return taxNum;
+    public boolean isActive() {
+        return isActive;
     }
 
-    public void setTaxNum(String taxNum) {
-        this.taxNum = taxNum;
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public Timestamp getLastModify() {
+        return lastModify;
+    }
+
+    public void setLastModify(Timestamp lastModify) {
+        this.lastModify = lastModify;
     }
 
     @Override
@@ -30,20 +45,20 @@ public class CustomerStatus {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CustomerStatus that = (CustomerStatus) o;
-        return getCustomer().equals(that.getCustomer()) &&
-                getTaxNum().compareTo(that.getTaxNum()) == 0;
+        return getCustomer().equals(that.getCustomer());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCustomer(), getTaxNum());
+        return Objects.hash(getCustomer());
     }
 
     @Override
     public String toString() {
-        return "CustomerStatus{" +
+        return "CustomerTax{" +
                 "customer=" + customer +
-                ", taxNum='" + taxNum + '\'' +
+                ", isActive=" + isActive +
+                ", lastModify=" + lastModify +
                 '}';
     }
 }

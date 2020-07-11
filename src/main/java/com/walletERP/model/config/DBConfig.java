@@ -15,7 +15,7 @@ public class DBConfig {
         org.apache.tomcat.jdbc.pool.DataSource dataSource = new org.apache.tomcat.jdbc.pool.DataSource();
         PoolProperties p = new PoolProperties();
         p.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        p.setUrl("jdbc:mysql://localhost:3306/course_management_system?useSSL=false");
+        p.setUrl("jdbc:mysql://localhost:3306/wallet-erp?useSSL=false");
         p.setUsername("root");
         p.setPassword("1729384#General");
         p.setMaxActive(100);

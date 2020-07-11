@@ -1,9 +1,14 @@
 package com.walletERP.model.entity;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Objects;
 
+@Component
+@Scope("prototype")
 public class CustomerLogo {
     private Customer customer;
     private byte[] picture;

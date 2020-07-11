@@ -3,9 +3,9 @@ package com.walletERP.model.dao;
 import com.walletERP.model.entity.CustomerTax;
 
 public interface TaxDAO {
-    int createCustomerTax(CustomerTax customerTax);
+    Long createCustomerTax(CustomerTax customerTax);
 
-    int updateCustomerTax(CustomerTax customerTax);
+    int updateCustomerTaxBYID(CustomerTax customerTax);
 
-    int deleteCustomerTax(CustomerTax customerTax);
+    int deleteCustomerTaxByID(CustomerTax customerTax);
 }
