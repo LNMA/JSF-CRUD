@@ -2,6 +2,7 @@ package com.walletERP.model.dao.impl;
 
 import com.walletERP.model.dao.StatusDAO;
 import com.walletERP.model.entity.CustomerStatus;
+import com.walletERP.model.mapper.StatusMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.Types;
+import java.util.Collection;
+import java.util.Set;
 
 @Repository
 public class StatusDAOImpl implements StatusDAO {
@@ -70,5 +73,27 @@ public class StatusDAOImpl implements StatusDAO {
         final String sql = "DELETE FROM `customer-status` WHERE`customer_id` = :customer_id;";
 
         return this.jdbcNamedTemplate.update(sql, param);
+    }
+
+    @Override
+    public CustomerStatus retrieveCustomerStatusByID(CustomerStatus customerStatus) {
+        SqlParameterSource param = buildCustomerStatusParameter(customerStatus);
+        //language=MySQL
+        final String sql = "SELECT * FROM `customer-status` WHERE `customer_id` = :customer_id;";
+        return (CustomerStatus) this.jdbcNamedTemplate.query(sql, param, this.context.getBean(StatusMapper.class));
+    }
+
+    @Override
+    public Collection<CustomerStatus> retrieveAllCustomerStatusByID(CustomerStatus customerStatus) {
+        SqlParameterSource param = buildCustomerStatusParameter(customerStatus);
+        //language=MySQL
+        final String sql = "SELECT * FROM `customer-status`;";
+
+        @SuppressWarnings(value = "unchecked")
+        Set<CustomerStatus> customersStatusContainer =
+                (Set<CustomerStatus>) this.context.getBean("customerStatusContainer");
+        customersStatusContainer.addAll(this.jdbcNamedTemplate.query(sql, param, this.context.getBean(StatusMapper.class)));
+
+        return customersStatusContainer;
     }
 }

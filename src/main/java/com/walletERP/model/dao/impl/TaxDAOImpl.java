@@ -2,6 +2,7 @@ package com.walletERP.model.dao.impl;
 
 import com.walletERP.model.dao.TaxDAO;
 import com.walletERP.model.entity.CustomerTax;
+import com.walletERP.model.mapper.TaxMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.Types;
+import java.util.Collection;
+import java.util.Set;
 
 @Repository
 public class TaxDAOImpl implements TaxDAO {
@@ -67,5 +70,27 @@ public class TaxDAOImpl implements TaxDAO {
         final String sql = "DELETE FROM `customer-tax` WHERE`customer_id` = :customer_id;";
 
         return this.jdbcNamedTemplate.update(sql, param);
+    }
+
+    @Override
+    public CustomerTax retrieveCustomerTax(CustomerTax customerTax) {
+        SqlParameterSource param = buildCustomerTaxParameter(customerTax);
+        //language=MySQL
+        final String sql = "SELECT * FROM `customer-tax` WHERE `customer_id` = :customer_id;";
+        return (CustomerTax) this.jdbcNamedTemplate.query(sql, param, this.context.getBean(TaxMapper.class));
+    }
+
+    @Override
+    public Collection<CustomerTax> retrieveAllCustomerTaxByID(CustomerTax customerTax) {
+        SqlParameterSource param = buildCustomerTaxParameter(customerTax);
+        //language=MySQL
+        final String sql = "SELECT * FROM `customer-tax`;";
+
+        @SuppressWarnings(value = "unchecked")
+        Set<CustomerTax> customersTaxContainer =
+                (Set<CustomerTax>) this.context.getBean("customerTaxContainer");
+        customersTaxContainer.addAll(this.jdbcNamedTemplate.query(sql, param, this.context.getBean(TaxMapper.class)));
+
+        return customersTaxContainer;
     }
 }

@@ -2,6 +2,7 @@ package com.walletERP.model.dao.impl;
 
 import com.walletERP.model.dao.CustomerDAO;
 import com.walletERP.model.entity.Customer;
+import com.walletERP.model.mapper.CustomerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.Types;
+import java.util.Collection;
+import java.util.Set;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO {
@@ -69,5 +72,26 @@ public class CustomerDAOImpl implements CustomerDAO {
         //language=MySQL
         final String sql = "DELETE FROM `customer-detail` WHERE `customer_id` = :customer_id;";
         return this.jdbcNamedTemplate.update(sql, param);
+    }
+
+    @Override
+    public Customer retrieveCustomerByID(Customer customer) {
+        SqlParameterSource param = buildCustomerParameter(customer);
+        //language=MySQL
+        final String sql = "SELECT * FROM `customer-detail` WHERE `customer_id` = :customer_id;";
+        return (Customer) this.jdbcNamedTemplate.query(sql, param, this.context.getBean(CustomerMapper.class));
+    }
+
+    @Override
+    public Collection<Customer> retrieveAllCustomerByID(Customer customer) {
+        SqlParameterSource param = buildCustomerParameter(customer);
+        //language=MySQL
+        final String sql = "SELECT * FROM `customer-detail`;";
+
+        @SuppressWarnings(value = "unchecked")
+        Set<Customer> customersContainer = (Set<Customer>) this.context.getBean("customerContainer");
+        customersContainer.addAll(this.jdbcNamedTemplate.query(sql, param, this.context.getBean(CustomerMapper.class)));
+
+        return customersContainer;
     }
 }

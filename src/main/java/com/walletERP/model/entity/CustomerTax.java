@@ -1,13 +1,15 @@
 package com.walletERP.model.entity;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Component
 @Scope("prototype")
-public class CustomerTax {
+public class CustomerTax implements Comparable<CustomerTax>, Serializable {
     private Customer customer;
     private String taxNum;
 
@@ -18,6 +20,7 @@ public class CustomerTax {
         return customer;
     }
 
+    @Autowired
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
@@ -42,6 +45,11 @@ public class CustomerTax {
     @Override
     public int hashCode() {
         return Objects.hash(getCustomer(), getTaxNum());
+    }
+
+    @Override
+    public int compareTo(CustomerTax o) {
+        return this.taxNum.compareTo(o.getTaxNum());
     }
 
     @Override

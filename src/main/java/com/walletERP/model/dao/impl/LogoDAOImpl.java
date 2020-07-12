@@ -2,6 +2,7 @@ package com.walletERP.model.dao.impl;
 
 import com.walletERP.model.dao.LogoDAO;
 import com.walletERP.model.entity.CustomerLogo;
+import com.walletERP.model.mapper.LogoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.Types;
+import java.util.Collection;
+import java.util.Set;
 
 @Repository
 public class LogoDAOImpl implements LogoDAO {
@@ -73,5 +76,26 @@ public class LogoDAOImpl implements LogoDAO {
         final String sql = "DELETE FROM `customer-logo` WHERE`customer_id` = :customer_id;";
 
         return this.jdbcNamedTemplate.update(sql, param);
+    }
+
+    @Override
+    public CustomerLogo retrieveCustomerLogoByID(CustomerLogo customerLogo) {
+        SqlParameterSource param = buildCustomerLogoParameter(customerLogo);
+        //language=MySQL
+        final String sql = "SELECT * FROM `customer-logo` WHERE `customer_id` = :customer_id;";
+        return (CustomerLogo) this.jdbcNamedTemplate.query(sql, param, this.context.getBean(LogoMapper.class));
+    }
+
+    @Override
+    public Collection<CustomerLogo> retrieveAllCustomerLogoByID(CustomerLogo customerLogo) {
+        SqlParameterSource param = buildCustomerLogoParameter(customerLogo);
+        //language=MySQL
+        final String sql = "SELECT * FROM `customer-logo`;";
+
+        @SuppressWarnings(value = "unchecked")
+        Set<CustomerLogo> customersLogoContainer = (Set<CustomerLogo>) this.context.getBean("customerLogoContainer");
+        customersLogoContainer.addAll(this.jdbcNamedTemplate.query(sql, param, this.context.getBean(LogoMapper.class)));
+
+        return customersLogoContainer;
     }
 }

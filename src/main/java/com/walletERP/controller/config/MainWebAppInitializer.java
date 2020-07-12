@@ -1,4 +1,4 @@
-package com.walletERP.controller.config;
+package com.walletERP.controller.config;/*
 
 import com.sun.faces.config.FacesInitializer;
 import org.slf4j.Logger;
@@ -21,10 +21,9 @@ public class MainWebAppInitializer extends FacesInitializer implements WebApplic
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         LOGGER.info("MainWebAppInitializer.onStartup()");
-        servletContext.setInitParameter("javax.faces.FACELETS_SKIP_COMMENTS", "true");
 
         AnnotationConfigWebApplicationContext root = new AnnotationConfigWebApplicationContext();
-        root.scan("com.louay.controller");
         servletContext.addListener(new ContextLoaderListener(root));
     }
 }
+*/
