@@ -15,8 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.Types;
-import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 
 @Repository
 public class LogoDAOImpl implements LogoDAO {
@@ -91,14 +90,10 @@ public class LogoDAOImpl implements LogoDAO {
     }
 
     @Override
-    public Collection<CustomerLogo> retrieveAllCustomerLogo() {
+    public List<CustomerLogo> retrieveAllCustomerLogo() {
         //language=MySQL
         final String sql = "SELECT * FROM `customer-logo`;";
 
-        @SuppressWarnings(value = "unchecked")
-        Set<CustomerLogo> customersLogoContainer = (Set<CustomerLogo>) this.context.getBean("customerLogoContainer");
-        customersLogoContainer.addAll(this.jdbcNamedTemplate.query(sql, this.context.getBean(LogoMapper.class)));
-
-        return customersLogoContainer;
+        return this.jdbcNamedTemplate.query(sql, this.context.getBean(LogoMapper.class));
     }
 }

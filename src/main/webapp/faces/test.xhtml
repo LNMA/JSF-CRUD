@@ -9,13 +9,13 @@
     <title>Test page</title>
 </h:head>
 <h:form>
-    <h:inputText id = "inputName" value = "#{customer.customerName}"/>
+    <h:inputText id = "inputName" value = "#{viewModelController.customer.customerName}"/>
     <h:commandButton value = "Show Message">
         <f:ajax execute = "inputName" render = "outputMessage" />
     </h:commandButton>
     <h2><h:outputText id = "outputMessage"
-                      value = "#{customer.customerName != null ?
-            customer.customerName : ''}"
+                      value = "#{viewModelController.customer.customerName != null ?
+            viewModelController.customer.customerName : ''}"
     /></h2>
 </h:form>
 </html>

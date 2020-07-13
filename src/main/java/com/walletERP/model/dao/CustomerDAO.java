@@ -1,8 +1,9 @@
 package com.walletERP.model.dao;
 
 import com.walletERP.model.entity.Customer;
+import com.walletERP.model.entity.CustomerWrapper;
 
-import java.util.Collection;
+import java.util.List;
 
 public interface CustomerDAO {
     Long createCustomer(Customer customer);
@@ -13,7 +14,7 @@ public interface CustomerDAO {
 
     Customer retrieveCustomerByID(Customer customer);
 
-    Collection<Customer> retrieveAllCustomer();
+    List<Customer> retrieveAllCustomer();
 
-    Collection<Object> retrieveAllCustomerInfo();
+    List<CustomerWrapper> retrieveAllCustomerInfo();
 }

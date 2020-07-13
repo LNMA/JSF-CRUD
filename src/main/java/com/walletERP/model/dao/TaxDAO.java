@@ -2,7 +2,7 @@ package com.walletERP.model.dao;
 
 import com.walletERP.model.entity.CustomerTax;
 
-import java.util.Collection;
+import java.util.List;
 
 public interface TaxDAO {
     Long createCustomerTax(CustomerTax customerTax);
@@ -13,5 +13,5 @@ public interface TaxDAO {
 
     CustomerTax retrieveCustomerTax(CustomerTax customerTax);
 
-    Collection<CustomerTax> retrieveAllCustomerTax();
+    List<CustomerTax> retrieveAllCustomerTax();
 }

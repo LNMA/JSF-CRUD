@@ -2,7 +2,7 @@ package com.walletERP.model.dao;
 
 import com.walletERP.model.entity.CustomerStatus;
 
-import java.util.Collection;
+import java.util.List;
 
 public interface StatusDAO {
     Long createCustomerStatus(CustomerStatus customerStatus);
@@ -13,5 +13,5 @@ public interface StatusDAO {
 
     CustomerStatus retrieveCustomerStatusByID(CustomerStatus customerStatus);
 
-    Collection<CustomerStatus> retrieveAllCustomerStatus();
+    List<CustomerStatus> retrieveAllCustomerStatus();
 }

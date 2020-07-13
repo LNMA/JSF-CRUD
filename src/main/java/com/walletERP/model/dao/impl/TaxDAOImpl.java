@@ -14,8 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.Types;
-import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 
 @Repository
 public class TaxDAOImpl implements TaxDAO {
@@ -85,15 +84,10 @@ public class TaxDAOImpl implements TaxDAO {
     }
 
     @Override
-    public Collection<CustomerTax> retrieveAllCustomerTax() {
+    public List<CustomerTax> retrieveAllCustomerTax() {
         //language=MySQL
         final String sql = "SELECT * FROM `customer-tax`;";
 
-        @SuppressWarnings(value = "unchecked")
-        Set<CustomerTax> customersTaxContainer =
-                (Set<CustomerTax>) this.context.getBean("customerTaxContainer");
-        customersTaxContainer.addAll(this.jdbcNamedTemplate.query(sql, this.context.getBean(TaxMapper.class)));
-
-        return customersTaxContainer;
+        return this.jdbcNamedTemplate.query(sql, this.context.getBean(TaxMapper.class));
     }
 }

@@ -14,8 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.Types;
-import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 
 @Repository
 public class StatusDAOImpl implements StatusDAO {
@@ -88,15 +87,10 @@ public class StatusDAOImpl implements StatusDAO {
     }
 
     @Override
-    public Collection<CustomerStatus> retrieveAllCustomerStatus( ) {
+    public List<CustomerStatus> retrieveAllCustomerStatus( ) {
         //language=MySQL
         final String sql = "SELECT * FROM `customer-status`;";
 
-        @SuppressWarnings(value = "unchecked")
-        Set<CustomerStatus> customersStatusContainer =
-                (Set<CustomerStatus>) this.context.getBean("customerStatusContainer");
-        customersStatusContainer.addAll(this.jdbcNamedTemplate.query(sql, this.context.getBean(StatusMapper.class)));
-
-        return customersStatusContainer;
+        return this.jdbcNamedTemplate.query(sql, this.context.getBean(StatusMapper.class));
     }
 }

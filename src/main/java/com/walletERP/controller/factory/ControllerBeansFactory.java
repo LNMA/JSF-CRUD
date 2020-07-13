@@ -8,64 +8,64 @@ import com.walletERP.model.dao.impl.CustomerDAOImpl;
 import com.walletERP.model.dao.impl.LogoDAOImpl;
 import com.walletERP.model.dao.impl.StatusDAOImpl;
 import com.walletERP.model.dao.impl.TaxDAOImpl;
-import com.walletERP.model.entity.Customer;
-import com.walletERP.model.entity.CustomerLogo;
-import com.walletERP.model.entity.CustomerStatus;
-import com.walletERP.model.entity.CustomerTax;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
+import com.walletERP.model.entity.*;
+import org.springframework.context.annotation.*;
 
 @Configuration
-@ComponentScan(basePackages = "com.walletERP.model")
+@ComponentScan({"com.walletERP.model", "com.walletERP.controller"})
 public class ControllerBeansFactory {
 
     @Bean
     @Scope("prototype")
-    public Customer getCustomer(){
+    public Customer customer(){
         return new Customer();
     }
 
     @Bean
     @Scope("prototype")
-    public CustomerLogo getCustomerLogo(){
+    public CustomerLogo customerLogo(){
         return new CustomerLogo();
     }
 
     @Bean
     @Scope("prototype")
-    public CustomerStatus getCustomerStatus(){
+    public CustomerStatus customerStatus(){
         return new CustomerStatus();
     }
 
     @Bean
     @Scope("prototype")
-    public CustomerTax getCustomerTax(){
+    public CustomerTax customerTax(){
         return new CustomerTax();
     }
 
     @Bean
     @Scope("prototype")
-    public CustomerDAO getCustomerDAO(){
+    public CustomerWrapper customerWrapper(){
+        return new CustomerWrapper();
+    }
+
+    @Bean
+    @Scope("prototype")
+    public CustomerDAO customerDAO(){
         return new CustomerDAOImpl();
     }
 
     @Bean
     @Scope("prototype")
-    public LogoDAO getCustomerLogoDAO(){
+    public LogoDAO logoDAO(){
         return new LogoDAOImpl();
     }
 
     @Bean
     @Scope("prototype")
-    public StatusDAO getCustomerStatusDAO(){
+    public StatusDAO statusDAO(){
         return new StatusDAOImpl();
     }
 
     @Bean
     @Scope("prototype")
-    public TaxDAO getCustomerTaxDAO(){
+    public TaxDAO taxDAO(){
         return new TaxDAOImpl();
     }
 }

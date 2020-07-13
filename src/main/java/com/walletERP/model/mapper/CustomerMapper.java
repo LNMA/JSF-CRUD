@@ -2,7 +2,6 @@ package com.walletERP.model.mapper;
 
 import com.walletERP.model.entity.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
@@ -16,7 +15,7 @@ public class CustomerMapper implements RowMapper<Customer> {
     private final Customer customer;
 
     @Autowired
-    public CustomerMapper(@Qualifier("customer") Customer customer) {
+    public CustomerMapper(Customer customer) {
         this.customer = customer;
     }
 

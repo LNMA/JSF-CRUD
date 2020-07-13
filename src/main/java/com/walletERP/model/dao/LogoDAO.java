@@ -2,7 +2,7 @@ package com.walletERP.model.dao;
 
 import com.walletERP.model.entity.CustomerLogo;
 
-import java.util.Collection;
+import java.util.List;
 
 public interface LogoDAO {
     Long createCustomerLogo(CustomerLogo customerLogo);
@@ -13,5 +13,5 @@ public interface LogoDAO {
 
     CustomerLogo retrieveCustomerLogoByID(CustomerLogo customerLogo);
 
-    Collection<CustomerLogo> retrieveAllCustomerLogo();
+    List<CustomerLogo> retrieveAllCustomerLogo();
 }

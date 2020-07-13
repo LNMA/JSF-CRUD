@@ -2,7 +2,9 @@ package com.walletERP.model.dao.impl;
 
 import com.walletERP.model.dao.CustomerDAO;
 import com.walletERP.model.entity.Customer;
+import com.walletERP.model.entity.CustomerWrapper;
 import com.walletERP.model.mapper.CustomerMapper;
+import com.walletERP.model.mapper.CustomerWrapperMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -14,12 +16,12 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.Types;
-import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO {
     private NamedParameterJdbcTemplate jdbcNamedTemplate;
+
     private ApplicationContext context;
 
     @Autowired
@@ -87,19 +89,15 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public Collection<Customer> retrieveAllCustomer() {
+    public List<Customer> retrieveAllCustomer() {
         //language=MySQL
         final String sql = "SELECT * FROM `customer-detail`;";
 
-        @SuppressWarnings(value = "unchecked")
-        Set<Customer> customersContainer = (Set<Customer>) this.context.getBean("customerContainer");
-        customersContainer.addAll(this.jdbcNamedTemplate.query(sql, this.context.getBean(CustomerMapper.class)));
-
-        return customersContainer;
+        return this.jdbcNamedTemplate.query(sql, this.context.getBean(CustomerMapper.class));
     }
 
     @Override
-    public Collection<Object> retrieveAllCustomerInfo() {
+    public List<CustomerWrapper> retrieveAllCustomerInfo() {
         //language=MySQL
         final String sql = "SELECT `customer-detail`.`customer_id`, `customer-detail`.`customer_name`, " +
                 "`customer-detail`.`country`, `customer-detail`.`state`, `customer-detail`.`address`, " +
@@ -110,9 +108,6 @@ public class CustomerDAOImpl implements CustomerDAO {
                 "`customer-detail`.`customer_id` = `customer-status`.`customer_id` INNER JOIN `customer-tax` ON " +
                 "`customer-detail`.`customer_id` = `customer-tax`.`customer_id`;";
 
-
-        this.jdbcNamedTemplate.query(sql, this.context.getBean(CustomerMapper.class));
-
-        return null;
+        return this.jdbcNamedTemplate.query(sql, this.context.getBean(CustomerWrapperMapper.class));
     }
 }

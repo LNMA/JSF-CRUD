@@ -2,7 +2,6 @@ package com.walletERP.model.mapper;
 
 import com.walletERP.model.entity.CustomerTax;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
@@ -16,7 +15,7 @@ public class TaxMapper implements RowMapper<CustomerTax> {
     private final CustomerTax tax;
 
     @Autowired
-    public TaxMapper(@Qualifier("customerTax") CustomerTax tax) {
+    public TaxMapper(CustomerTax tax) {
         this.tax = tax;
     }
 
