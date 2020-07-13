@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+    <title>Page 1</title>
+</h:head>
+<p:headerRow></p:headerRow>
+
+<div class="ui-g">
+<div class="ui-g-12 ui-md-6 ui-lg-3">
+    <h:form>
+        <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+
+        <h3>Actions Facet</h3>
+        <p:tabView scrollable="true">
+
+            <p:toolbar>
+                <f:facet name="left">
+                    <p:commandButton type="button" value="New" icon="pi pi-file" />
+                </f:facet>
+            </p:toolbar>
+
+            <p:tab title="Godfather Part I">
+                <f:facet name="actions">
+                    <p:menuButton value="Options">
+                        <p:menuitem value="Update" icon="pi pi-refresh"/>
+                        <p:menuitem value="Delete" ajax="false" icon="pi pi-times"/>
+                    </p:menuButton>
+                </f:facet>
+
+                <h:panelGrid columns="2" cellpadding="10">
+                    <p:graphicImage name="demo/images/godfather/godfather1.jpg" value="data:image/jpg;base64,#{}"/>
+                    <h:outputText value="" />
+                </h:panelGrid>
+            </p:tab>
+
+            <p:repeat value="" var="">
+            <p:tab title="Godfather Part II">
+                <f:facet name="actions">
+                    <p:button value="Process" />
+                </f:facet>
+
+                <h:panelGrid columns="2" cellpadding="10">
+                    <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
+                    <h:outputText value="" />
+                </h:panelGrid>
+            </p:tab>
+            </p:repeat>
+
+            <p:tab title="Godfather Part III">
+                <h:panelGrid columns="2" cellpadding="10">
+                    <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+                    <h:outputText value="" />
+                </h:panelGrid>
+            </p:tab>
+
+        </p:tabView>
+
+    </h:form>
+</div>
+</div>
+</html>

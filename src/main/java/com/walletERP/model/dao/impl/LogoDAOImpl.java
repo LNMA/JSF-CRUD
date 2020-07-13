@@ -20,12 +20,16 @@ import java.util.Set;
 
 @Repository
 public class LogoDAOImpl implements LogoDAO {
-    private final NamedParameterJdbcTemplate jdbcNamedTemplate;
-    private final ApplicationContext context;
+    private NamedParameterJdbcTemplate jdbcNamedTemplate;
+    private ApplicationContext context;
 
     @Autowired
-    public LogoDAOImpl(DataSource dataSource, @Qualifier("buildAnnotationContextModel") ApplicationContext context) {
+    public void setJdbcNamedTemplate(DataSource dataSource) {
         this.jdbcNamedTemplate = new NamedParameterJdbcTemplate(dataSource);
+    }
+
+    @Autowired
+    public void setContext(@Qualifier("buildAnnotationContextModel") ApplicationContext context) {
         this.context = context;
     }
 
@@ -87,14 +91,13 @@ public class LogoDAOImpl implements LogoDAO {
     }
 
     @Override
-    public Collection<CustomerLogo> retrieveAllCustomerLogoByID(CustomerLogo customerLogo) {
-        SqlParameterSource param = buildCustomerLogoParameter(customerLogo);
+    public Collection<CustomerLogo> retrieveAllCustomerLogo() {
         //language=MySQL
         final String sql = "SELECT * FROM `customer-logo`;";
 
         @SuppressWarnings(value = "unchecked")
         Set<CustomerLogo> customersLogoContainer = (Set<CustomerLogo>) this.context.getBean("customerLogoContainer");
-        customersLogoContainer.addAll(this.jdbcNamedTemplate.query(sql, param, this.context.getBean(LogoMapper.class)));
+        customersLogoContainer.addAll(this.jdbcNamedTemplate.query(sql, this.context.getBean(LogoMapper.class)));
 
         return customersLogoContainer;
     }

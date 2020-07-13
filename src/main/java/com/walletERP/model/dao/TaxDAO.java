@@ -13,5 +13,5 @@ public interface TaxDAO {
 
     CustomerTax retrieveCustomerTax(CustomerTax customerTax);
 
-    Collection<CustomerTax> retrieveAllCustomerTaxByID(CustomerTax customerTax);
+    Collection<CustomerTax> retrieveAllCustomerTax();
 }

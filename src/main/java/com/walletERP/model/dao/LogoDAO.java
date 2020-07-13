@@ -13,5 +13,5 @@ public interface LogoDAO {
 
     CustomerLogo retrieveCustomerLogoByID(CustomerLogo customerLogo);
 
-    Collection<CustomerLogo> retrieveAllCustomerLogoByID(CustomerLogo customerLogo);
+    Collection<CustomerLogo> retrieveAllCustomerLogo();
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.Objects;
 
 @Component
@@ -51,6 +52,13 @@ public class CustomerLogo implements Comparable<CustomerLogo>, Serializable {
 
     public void setUploadDate(Timestamp uploadDate) {
         this.uploadDate = uploadDate;
+    }
+
+    public StringBuilder getBase64() {
+        StringBuilder stringBase46 = new StringBuilder();
+        stringBase46.append(Base64.getEncoder().encodeToString(this.picture));
+
+        return stringBase46;
     }
 
     @Override

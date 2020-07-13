@@ -15,7 +15,7 @@ import java.util.HashSet;
 
 @Configuration
 @ComponentScan(basePackages = {"com.walletERP.model"})
-public class BeansFactory {
+public class ModelBeansFactory {
     @Bean(name = "buildAnnotationContextModel")
     @Scope("prototype")
     public ApplicationContext buildContext(){

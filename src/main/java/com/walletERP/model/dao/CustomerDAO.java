@@ -13,5 +13,7 @@ public interface CustomerDAO {
 
     Customer retrieveCustomerByID(Customer customer);
 
-    Collection<Customer> retrieveAllCustomerByID(Customer customer);
+    Collection<Customer> retrieveAllCustomer();
+
+    Collection<Object> retrieveAllCustomerInfo();
 }

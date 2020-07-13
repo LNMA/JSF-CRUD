@@ -19,12 +19,16 @@ import java.util.Set;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO {
-    private final NamedParameterJdbcTemplate jdbcNamedTemplate;
-    private final ApplicationContext context;
+    private NamedParameterJdbcTemplate jdbcNamedTemplate;
+    private ApplicationContext context;
 
     @Autowired
-    public CustomerDAOImpl(DataSource dataSource, @Qualifier("buildAnnotationContextModel") ApplicationContext context) {
+    public void setJdbcNamedTemplate(DataSource dataSource) {
         this.jdbcNamedTemplate = new NamedParameterJdbcTemplate(dataSource);
+    }
+
+    @Autowired
+    public void setContext(@Qualifier("buildAnnotationContextModel") ApplicationContext context) {
         this.context = context;
     }
 
@@ -83,15 +87,32 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public Collection<Customer> retrieveAllCustomerByID(Customer customer) {
-        SqlParameterSource param = buildCustomerParameter(customer);
+    public Collection<Customer> retrieveAllCustomer() {
         //language=MySQL
         final String sql = "SELECT * FROM `customer-detail`;";
 
         @SuppressWarnings(value = "unchecked")
         Set<Customer> customersContainer = (Set<Customer>) this.context.getBean("customerContainer");
-        customersContainer.addAll(this.jdbcNamedTemplate.query(sql, param, this.context.getBean(CustomerMapper.class)));
+        customersContainer.addAll(this.jdbcNamedTemplate.query(sql, this.context.getBean(CustomerMapper.class)));
 
         return customersContainer;
+    }
+
+    @Override
+    public Collection<Object> retrieveAllCustomerInfo() {
+        //language=MySQL
+        final String sql = "SELECT `customer-detail`.`customer_id`, `customer-detail`.`customer_name`, " +
+                "`customer-detail`.`country`, `customer-detail`.`state`, `customer-detail`.`address`, " +
+                "`customer-detail`.`create_date`, `customer-logo`.`picture`, `customer-logo`.`name`, " +
+                "`customer-logo`.`upload_date`, `customer-status`.`active`, `customer-status`.`last_modify`, " +
+                "`customer-tax`.`tax_num` FROM `customer-detail` INNER JOIN `customer-logo` ON " +
+                "`customer-detail`.`customer_id` = `customer-logo`.`customer_id` INNER JOIN `customer-status` ON " +
+                "`customer-detail`.`customer_id` = `customer-status`.`customer_id` INNER JOIN `customer-tax` ON " +
+                "`customer-detail`.`customer_id` = `customer-tax`.`customer_id`;";
+
+
+        this.jdbcNamedTemplate.query(sql, this.context.getBean(CustomerMapper.class));
+
+        return null;
     }
 }

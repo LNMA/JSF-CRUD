@@ -2,6 +2,7 @@ package com.walletERP.model.mapper;
 
 import com.walletERP.model.entity.CustomerLogo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,7 @@ public class LogoMapper implements RowMapper<CustomerLogo> {
     private final CustomerLogo logo;
 
     @Autowired
-    public LogoMapper(CustomerLogo logo) {
+    public LogoMapper(@Qualifier("customerLogo") CustomerLogo logo) {
         this.logo = logo;
     }
 

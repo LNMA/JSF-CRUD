@@ -19,12 +19,16 @@ import java.util.Set;
 
 @Repository
 public class StatusDAOImpl implements StatusDAO {
-    private final NamedParameterJdbcTemplate jdbcNamedTemplate;
-    private final ApplicationContext context;
+    private NamedParameterJdbcTemplate jdbcNamedTemplate;
+    private ApplicationContext context;
 
     @Autowired
-    public StatusDAOImpl(DataSource dataSource, @Qualifier("buildAnnotationContextModel") ApplicationContext context) {
+    public void setJdbcNamedTemplate(DataSource dataSource) {
         this.jdbcNamedTemplate = new NamedParameterJdbcTemplate(dataSource);
+    }
+
+    @Autowired
+    public void setContext(@Qualifier("buildAnnotationContextModel") ApplicationContext context) {
         this.context = context;
     }
 
@@ -84,15 +88,14 @@ public class StatusDAOImpl implements StatusDAO {
     }
 
     @Override
-    public Collection<CustomerStatus> retrieveAllCustomerStatusByID(CustomerStatus customerStatus) {
-        SqlParameterSource param = buildCustomerStatusParameter(customerStatus);
+    public Collection<CustomerStatus> retrieveAllCustomerStatus( ) {
         //language=MySQL
         final String sql = "SELECT * FROM `customer-status`;";
 
         @SuppressWarnings(value = "unchecked")
         Set<CustomerStatus> customersStatusContainer =
                 (Set<CustomerStatus>) this.context.getBean("customerStatusContainer");
-        customersStatusContainer.addAll(this.jdbcNamedTemplate.query(sql, param, this.context.getBean(StatusMapper.class)));
+        customersStatusContainer.addAll(this.jdbcNamedTemplate.query(sql, this.context.getBean(StatusMapper.class)));
 
         return customersStatusContainer;
     }

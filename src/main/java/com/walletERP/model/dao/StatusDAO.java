@@ -13,5 +13,5 @@ public interface StatusDAO {
 
     CustomerStatus retrieveCustomerStatusByID(CustomerStatus customerStatus);
 
-    Collection<CustomerStatus> retrieveAllCustomerStatusByID(CustomerStatus customerStatus);
+    Collection<CustomerStatus> retrieveAllCustomerStatus();
 }

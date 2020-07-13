@@ -2,6 +2,7 @@ package com.walletERP.model.mapper;
 
 import com.walletERP.model.entity.CustomerStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,7 @@ public class StatusMapper implements RowMapper<CustomerStatus> {
     private final CustomerStatus status;
 
     @Autowired
-    public StatusMapper(CustomerStatus status) {
+    public StatusMapper(@Qualifier("customerStatus") CustomerStatus status) {
         this.status = status;
     }
 

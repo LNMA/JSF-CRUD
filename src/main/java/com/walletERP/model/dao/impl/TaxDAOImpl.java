@@ -19,12 +19,16 @@ import java.util.Set;
 
 @Repository
 public class TaxDAOImpl implements TaxDAO {
-    private final NamedParameterJdbcTemplate jdbcNamedTemplate;
-    private final ApplicationContext context;
+    private NamedParameterJdbcTemplate jdbcNamedTemplate;
+    private ApplicationContext context;
 
     @Autowired
-    public TaxDAOImpl(DataSource dataSource, @Qualifier("buildAnnotationContextModel") ApplicationContext context) {
+    public void setJdbcNamedTemplate(DataSource dataSource) {
         this.jdbcNamedTemplate = new NamedParameterJdbcTemplate(dataSource);
+    }
+
+    @Autowired
+    public void setContext(@Qualifier("buildAnnotationContextModel") ApplicationContext context) {
         this.context = context;
     }
 
@@ -81,15 +85,14 @@ public class TaxDAOImpl implements TaxDAO {
     }
 
     @Override
-    public Collection<CustomerTax> retrieveAllCustomerTaxByID(CustomerTax customerTax) {
-        SqlParameterSource param = buildCustomerTaxParameter(customerTax);
+    public Collection<CustomerTax> retrieveAllCustomerTax() {
         //language=MySQL
         final String sql = "SELECT * FROM `customer-tax`;";
 
         @SuppressWarnings(value = "unchecked")
         Set<CustomerTax> customersTaxContainer =
                 (Set<CustomerTax>) this.context.getBean("customerTaxContainer");
-        customersTaxContainer.addAll(this.jdbcNamedTemplate.query(sql, param, this.context.getBean(TaxMapper.class)));
+        customersTaxContainer.addAll(this.jdbcNamedTemplate.query(sql, this.context.getBean(TaxMapper.class)));
 
         return customersTaxContainer;
     }
