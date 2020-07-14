@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 4.0 Resource Definitions //EN" "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
+<resources>
+    <jdbc-connection-pool name="myPool"
+                          res-type="javax.sql.DataSource"
+                          datasource-classname="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+                          driver-classname="com.mysql.cj.jdbc.Driver"
+                          steady-pool-size="10"
+                          max-pool-size="100"
+                          max-wait-time-in-millis="60000"
+                          pool-resize-quantity="2"
+                          idle-timeout-in-seconds="300"
+                          is-isolation-level-guaranteed="true"
+                          is-connection-validation-required="false"
+                          connection-validation-method="auto-commit"
+                          fail-all-connections="false">
+        <property name="URL" value="jdbc:mysql://localhost:3306/wallet-erp?useSSL=false"/>
+        <property name="User" value="root"/>
+        <property name="Password" value="1729384"/>
+        <property name="MaxStatements" value="200"/>
+        <property name="ImplicitCachingEnabled" value="true"/>
+    </jdbc-connection-pool>
+    <jdbc-resource enabled="true" pool-name="myPool" jndi-name="jdbc/myPool"/>
+</resources>

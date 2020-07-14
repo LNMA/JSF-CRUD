@@ -1,10 +1,20 @@
 package com.walletERP.model.entity;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.Objects;
 
-public class CustomerLogo {
+@Component
+@Scope("prototype")
+public class CustomerLogo implements Comparable<CustomerLogo>, Serializable {
+    private static final long serialVersionUID = -759570026208211998L;
     private Customer customer;
     private byte[] picture;
     private String name;
@@ -17,6 +27,7 @@ public class CustomerLogo {
         return customer;
     }
 
+    @Autowired
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
@@ -45,6 +56,13 @@ public class CustomerLogo {
         this.uploadDate = uploadDate;
     }
 
+    public StringBuilder getBase64() {
+        StringBuilder stringBase46 = new StringBuilder();
+        stringBase46.append(Base64.getEncoder().encodeToString(this.picture));
+
+        return stringBase46;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -56,6 +74,11 @@ public class CustomerLogo {
     @Override
     public int hashCode() {
         return Objects.hash(getCustomer());
+    }
+
+    @Override
+    public int compareTo(CustomerLogo o) {
+        return this.uploadDate.compareTo(o.getUploadDate());
     }
 
     @Override

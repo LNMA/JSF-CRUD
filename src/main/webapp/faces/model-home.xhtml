@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+    <title>Page 1</title>
+</h:head>
+
+    <h:form>
+        <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+
+        <h3>Show Customer</h3>
+
+        <p:toolbar>
+            <f:facet name="left">
+                <p:commandButton type="button" value="New" icon="pi pi-file" />
+            </f:facet>
+
+            <f:facet name="right">
+                <p:menuButton value="Options">
+                    <p:menuitem value="Update" icon="pi pi-refresh"/>
+                    <p:menuitem value="Delete" ajax="false" icon="pi pi-times"/>
+                </p:menuButton>
+            </f:facet>
+        </p:toolbar>
+
+        <p:tabView scrollable="true" value="#{viewModelController.customerAllInfo}" var="list" cache="true">
+
+            <p:tab title="#{list.customer.customerID}: #{list.customer.customerName}" >
+                <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+                    <p:graphicImage name="cuustomerImg" value="data:image/png;base64,#{list.customerLogo.base64}"/>
+                    <h:outputText value="Uplaod Date : " style="font-weight: lighter"/>
+                    <h:outputText value="" style="font-weight: lighter"/>
+
+                    <p:outputPanel>
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputText value="Register Date : " />
+                            <h:outputText value="#{list.customer.createDate}" style="font-weight: bold"/>
+
+                            <h:outputText value="Customer Name : " />
+                            <h:outputText value="#{list.customer.customerName}" style="font-weight: bold"/>
+
+                            <h:outputText value="Country : " />
+                            <h:outputText value="#{list.customer.country}" style="font-weight: bold"/>
+
+                            <h:outputText value="City : " />
+                            <h:outputText value="#{list.customer.state}" style="font-weight: bold"/>
+
+                            <h:outputText value="Address : " />
+                            <h:outputText value="#{list.customer.address}" style="font-weight: bold"/>
+
+                            <h:outputText value="Tax Number : " />
+                            <h:outputText value="#{list.customerTax.taxNum}" style="font-weight: bold"/>
+
+                            <h:outputText value="Is Status Active : " />
+                            <h:outputText value="#{list.customerStatus.active}" style="font-weight: bold"/>
+
+                            <h:outputText value="Last Status Change : " />
+                            <h:outputText value="#{list.customerStatus.lastModify}" style="font-weight: bold"/>
+                        </h:panelGrid>
+
+                    </p:outputPanel>
+
+                </h:panelGrid>
+            </p:tab>
+
+
+
+        </p:tabView>
+
+    </h:form>
+
+</html>

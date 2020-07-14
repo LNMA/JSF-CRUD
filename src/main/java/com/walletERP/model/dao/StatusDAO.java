@@ -2,10 +2,17 @@ package com.walletERP.model.dao;
 
 import com.walletERP.model.entity.CustomerStatus;
 
-public interface StatusDAO {
-    int createCustomerStatus(CustomerStatus customerStatus);
+import java.io.Serializable;
+import java.util.List;
 
-    int updateCustomerStatus(CustomerStatus customerStatus);
+public interface StatusDAO extends Serializable {
+    Long createCustomerStatus(CustomerStatus customerStatus);
 
-    int deleteCustomerStatus(CustomerStatus customerStatus);
+    int updateCustomerStatusByID(CustomerStatus customerStatus);
+
+    int deleteCustomerStatusByID(CustomerStatus customerStatus);
+
+    CustomerStatus retrieveCustomerStatusByID(CustomerStatus customerStatus);
+
+    List<CustomerStatus> retrieveAllCustomerStatus();
 }

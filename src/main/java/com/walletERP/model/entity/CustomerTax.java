@@ -1,12 +1,19 @@
 package com.walletERP.model.entity;
 
-import java.sql.Timestamp;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+import java.io.Serializable;
 import java.util.Objects;
 
-public class CustomerTax {
+@Component
+@Scope("prototype")
+public class CustomerTax implements Comparable<CustomerTax>, Serializable {
+    private static final long serialVersionUID = 2922731136300068462L;
     private Customer customer;
-    private boolean isActive;
-    private java.sql.Timestamp lastModify;
+    private String taxNum;
 
     public CustomerTax() {
     }
@@ -15,24 +22,17 @@ public class CustomerTax {
         return customer;
     }
 
+    @Autowired
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
-    public boolean isActive() {
-        return isActive;
+    public String getTaxNum() {
+        return taxNum;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
-    public Timestamp getLastModify() {
-        return lastModify;
-    }
-
-    public void setLastModify(Timestamp lastModify) {
-        this.lastModify = lastModify;
+    public void setTaxNum(String taxNum) {
+        this.taxNum = taxNum;
     }
 
     @Override
@@ -40,20 +40,25 @@ public class CustomerTax {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CustomerTax that = (CustomerTax) o;
-        return getCustomer().equals(that.getCustomer());
+        return getCustomer().equals(that.getCustomer()) &&
+                getTaxNum().compareTo(that.getTaxNum()) == 0;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCustomer());
+        return Objects.hash(getCustomer(), getTaxNum());
+    }
+
+    @Override
+    public int compareTo(CustomerTax o) {
+        return this.taxNum.compareTo(o.getTaxNum());
     }
 
     @Override
     public String toString() {
         return "CustomerTax{" +
                 "customer=" + customer +
-                ", isActive=" + isActive +
-                ", lastModify=" + lastModify +
+                ", taxNum='" + taxNum + '\'' +
                 '}';
     }
 }

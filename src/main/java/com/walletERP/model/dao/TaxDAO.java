@@ -2,10 +2,17 @@ package com.walletERP.model.dao;
 
 import com.walletERP.model.entity.CustomerTax;
 
-public interface TaxDAO {
-    int createCustomerTax(CustomerTax customerTax);
+import java.io.Serializable;
+import java.util.List;
 
-    int updateCustomerTax(CustomerTax customerTax);
+public interface TaxDAO extends Serializable {
+    Long createCustomerTax(CustomerTax customerTax);
 
-    int deleteCustomerTax(CustomerTax customerTax);
+    int updateCustomerTaxBYID(CustomerTax customerTax);
+
+    int deleteCustomerTaxByID(CustomerTax customerTax);
+
+    CustomerTax retrieveCustomerTax(CustomerTax customerTax);
+
+    List<CustomerTax> retrieveAllCustomerTax();
 }

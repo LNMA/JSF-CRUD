@@ -1,14 +1,22 @@
 package com.walletERP.model.entity;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Objects;
 
-public class Customer {
+@Component
+@Scope("prototype")
+public class Customer implements Comparable<Customer>, Serializable {
+    private static final long serialVersionUID = 399443145836441006L;
     private Long customerID;
     private String customerName;
     private String country;
     private String state;
     private String address;
-    private String createDate;
+    private java.sql.Timestamp createDate;
 
     public Customer() {
     }
@@ -53,11 +61,11 @@ public class Customer {
         this.address = address;
     }
 
-    public String getCreateDate() {
+    public Timestamp getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(String createDate) {
+    public void setCreateDate(Timestamp createDate) {
         this.createDate = createDate;
     }
 
@@ -72,6 +80,11 @@ public class Customer {
     @Override
     public int hashCode() {
         return Objects.hash(getCustomerID());
+    }
+
+    @Override
+    public int compareTo(Customer o) {
+        return this.createDate.compareTo(o.getCreateDate());
     }
 
     @Override

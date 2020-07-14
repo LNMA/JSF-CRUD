@@ -2,10 +2,17 @@ package com.walletERP.model.dao;
 
 import com.walletERP.model.entity.CustomerLogo;
 
-public interface LogoDAO {
-    int createCustomerLogo(CustomerLogo customerLogo);
+import java.io.Serializable;
+import java.util.List;
 
-    int updateCustomerLogo(CustomerLogo customerLogo);
+public interface LogoDAO extends Serializable {
+    Long createCustomerLogo(CustomerLogo customerLogo);
 
-    int deleteCustomerLogo(CustomerLogo customerLogo);
+    int updateCustomerLogoByID(CustomerLogo customerLogo);
+
+    int deleteCustomerLogoByID(CustomerLogo customerLogo);
+
+    CustomerLogo retrieveCustomerLogoByID(CustomerLogo customerLogo);
+
+    List<CustomerLogo> retrieveAllCustomerLogo();
 }
