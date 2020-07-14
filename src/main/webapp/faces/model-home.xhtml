@@ -11,69 +11,101 @@
 <h:head>
     <title>Page 1</title>
 </h:head>
+<h:body style="background-color: #9a9a9a">
+    <p:growl id="growl" sticky="true" showDetail="true"/>
 
     <h:form>
-        <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+        <div class="ui-g">
+            <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
+                <p:menubar>
+                    <p:menuitem url="../faces/model-home.xhtml">
+                        <h2 style="text-align: center; color: white">Show Customer</h2>
+                    </p:menuitem>
+                </p:menubar>
+            </div>
+        </div>
 
-        <h3>Show Customer</h3>
+        <div class="ui-g">
+            <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
+                <p:toolbar>
+                    <f:facet name="left">
+                        <p:commandButton type="button" value="New" icon="pi pi-file"/>
+                    </f:facet>
+                </p:toolbar>
+            </div>
+        </div>
 
-        <p:toolbar>
-            <f:facet name="left">
-                <p:commandButton type="button" value="New" icon="pi pi-file" />
-            </f:facet>
+        <div class="ui-g">
+            <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
+                <p:tabView scrollable="true" value="#{viewModelController.customerAllInfo}" var="list">
 
-            <f:facet name="right">
-                <p:menuButton value="Options">
-                    <p:menuitem value="Update" icon="pi pi-refresh"/>
-                    <p:menuitem value="Delete" ajax="false" icon="pi pi-times"/>
-                </p:menuButton>
-            </f:facet>
-        </p:toolbar>
+                    <p:tab title="#{list.customer.customerID}: #{list.customer.customerName}">
 
-        <p:tabView scrollable="true" value="#{viewModelController.customerAllInfo}" var="list" cache="true">
+                        <h:panelGrid columns="3" style="width:100%" columnClasses="logo,detail">
 
-            <p:tab title="#{list.customer.customerID}: #{list.customer.customerName}" >
-                <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
-                    <p:graphicImage name="cuustomerImg" value="data:image/png;base64,#{list.customerLogo.base64}"/>
-                    <h:outputText value="Uplaod Date : " style="font-weight: lighter"/>
-                    <h:outputText value="" style="font-weight: lighter"/>
+                            <div class="ui-g">
 
-                    <p:outputPanel>
-                        <h:panelGrid columns="2" cellpadding="5">
-                            <h:outputText value="Register Date : " />
-                            <h:outputText value="#{list.customer.createDate}" style="font-weight: bold"/>
+                                <div class="ui-g-4 ui-sm-4 ui-md-4 ui-lg-4">
+                                    <p:outputPanel>
+                                        <p:graphicImage name="cuustomerImg"
+                                                        value="data:image/png;base64,#{list.customerLogo.base64}"/>
+                                        <h:outputText value="Uplaod Date : " style="font-weight: lighter"/>
+                                        <h:outputText value="" style="font-weight: lighter"/>
+                                    </p:outputPanel>
+                                </div>
 
-                            <h:outputText value="Customer Name : " />
-                            <h:outputText value="#{list.customer.customerName}" style="font-weight: bold"/>
+                                <div class="ui-g-7 ui-sm-7 ui-md-7 ui-lg-7">
+                                    <p:outputPanel>
 
-                            <h:outputText value="Country : " />
-                            <h:outputText value="#{list.customer.country}" style="font-weight: bold"/>
+                                        <h:panelGrid columns="2" cellpadding="5">
 
-                            <h:outputText value="City : " />
-                            <h:outputText value="#{list.customer.state}" style="font-weight: bold"/>
+                                            <h:outputText value="Register Date : "/>
+                                            <h:outputText value="#{list.customer.createDate}"
+                                                          style="font-weight: bold"/>
 
-                            <h:outputText value="Address : " />
-                            <h:outputText value="#{list.customer.address}" style="font-weight: bold"/>
+                                            <h:outputText value="Customer Name : "/>
+                                            <h:outputText value="#{list.customer.customerName}"
+                                                          style="font-weight: bold"/>
 
-                            <h:outputText value="Tax Number : " />
-                            <h:outputText value="#{list.customerTax.taxNum}" style="font-weight: bold"/>
+                                            <h:outputText value="Country : "/>
+                                            <h:outputText value="#{list.customer.country}" style="font-weight: bold"/>
 
-                            <h:outputText value="Is Status Active : " />
-                            <h:outputText value="#{list.customerStatus.active}" style="font-weight: bold"/>
+                                            <h:outputText value="City : "/>
+                                            <h:outputText value="#{list.customer.state}" style="font-weight: bold"/>
 
-                            <h:outputText value="Last Status Change : " />
-                            <h:outputText value="#{list.customerStatus.lastModify}" style="font-weight: bold"/>
+                                            <h:outputText value="Address : "/>
+                                            <h:outputText value="#{list.customer.address}" style="font-weight: bold"/>
+
+                                            <h:outputText value="Tax Number : "/>
+                                            <h:outputText value="#{list.customerTax.taxNum}" style="font-weight: bold"/>
+
+                                            <h:outputText value="Is Status Active : "/>
+                                            <h:outputText value="#{list.customerStatus.active}"
+                                                          style="font-weight: bold"/>
+
+                                            <h:outputText value="Last Status Change : "/>
+                                            <h:outputText value="#{list.customerStatus.lastModify}"
+                                                          style="font-weight: bold"/>
+
+                                            <f:facet name="footer">
+                                                <p:menuButton value="Options">
+                                                    <p:menuitem value="Update" icon="pi pi-refresh"/>
+                                                    <p:menuitem value="Delete" ajax="false" icon="pi pi-times"/>
+                                                </p:menuButton>
+                                            </f:facet>
+                                        </h:panelGrid>
+                                    </p:outputPanel>
+                                </div>
+
+                            </div>
                         </h:panelGrid>
 
-                    </p:outputPanel>
+                    </p:tab>
 
-                </h:panelGrid>
-            </p:tab>
-
-
-
-        </p:tabView>
+                </p:tabView>
+            </div>
+        </div>
 
     </h:form>
-
+</h:body>
 </html>

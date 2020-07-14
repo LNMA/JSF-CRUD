@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+    <title>Page 2</title>
+</h:head>
+
+<h:body style="background-color: #9a9a9a">
+    <p:growl id="growl" sticky="true" showDetail="true"/>
+    <h:form enctype="multipart/form-data">
+        <div class="ui-g">
+            <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
+                <p:menubar>
+                    <p:menuitem url="../faces/register-edit.xhtml">
+                        <h2 style="text-align: center; color: white">Create Customer</h2>
+                    </p:menuitem>
+                </p:menubar>
+            </div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
+                <p:panel header="Select a Location">
+                    <h:panelGrid columns="1" cellpadding="5">
+
+                        <div class="ui-g">
+                            <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
+                                <h:outputText for="inputName" value="Customer Name : "/>
+                                <p:inputText id="inputName"
+                                             value="#{saveCustomerDetailController.customer.customerName}"
+                                             placeholder="type your name"/>
+
+                                <h:outputText for="inputcountry" value="Country : "/>
+                                <p:selectOneMenu id="inputcountry"
+                                                 value="#{saveCustomerDetailController.customer.country}"
+                                                 style="width:192px">
+                                    <p:ajax listener="#{saveCustomerDetailController.onCountryChange}"
+                                            update="inputCity"/>
+                                    <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true"/>
+                                    <f:selectItems value="#{saveCustomerDetailController.countries}"/>
+                                </p:selectOneMenu>
+
+                                <h:outputText for="inputCity" value="City : "/>
+                                <p:selectOneMenu id="inputCity" value="#{saveCustomerDetailController.customer.state}"
+                                                 style="width:192px">
+                                    <f:selectItem itemLabel="Select City" itemValue="" noSelectionOption="true"/>
+                                    <f:selectItems value="#{saveCustomerDetailController.cities}"/>
+                                </p:selectOneMenu>
+
+                                <h:outputText for="inputAddress" value="Address : "/>
+                                <p:inputText id="inputAddress" value="#{saveCustomerDetailController.customer.address}"
+                                             placeholder="type your address"/>
+
+                                <h:outputText for="inputTaxNum" value="Tax Number : "/>
+                                <p:inputText id="inputTaxNum" value="#{saveCustomerTaxController.customerTax.taxNum}"
+                                             placeholder="type tax number"/>
+
+                                <h:outputText for="inputIsActive" value="Active : "/>
+                                <p:selectBooleanCheckbox id="inputIsActive"
+                                                         value="#{saveCustomerStatusController.customerStatus.active}"/>
+
+                                <h:outputText for="uploadLogo" value="Upload Logo : "/>
+                                <p:fileUpload id="uploadLogo" value="#{saveCustomerLogoController.uploadedFile}"
+                                              mode="simple" skinSimple="true" accept="image/*"/>
+                            </div>
+                        </div>
+                    </h:panelGrid>
+
+                    <p:separator/>
+                    <p:commandButton value="Submit" icon="pi pi-check"/>
+
+                </p:panel>
+            </div>
+        </div>
+    </h:form>
+</h:body>
+</html>

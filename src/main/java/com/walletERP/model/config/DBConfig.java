@@ -25,8 +25,8 @@ public class DBConfig {
         p.setMaxIdle(100);
         p.setMinIdle(10);
         p.setInitialSize(10);
-        p.setMaxWait(30000);
-        p.setTestOnBorrow(false);
+        p.setMaxWait(10000);
+        p.setTestOnBorrow(true);
         p.setTestOnConnect(false);
         p.setTestOnReturn(false);
         p.setTestWhileIdle(false);
@@ -34,7 +34,7 @@ public class DBConfig {
         p.setValidationQueryTimeout(-1);
         p.setValidatorClassName(null);
         p.setTimeBetweenEvictionRunsMillis(5000);
-        p.setMinEvictableIdleTimeMillis(60000);
+        p.setMinEvictableIdleTimeMillis(30000);
         p.setRemoveAbandoned(true);
         p.setRemoveAbandonedTimeout(60);
         p.setLogAbandoned(true);
@@ -42,7 +42,7 @@ public class DBConfig {
         p.setValidationInterval(3000);
         p.setMaxAge(7200000);
         p.setJdbcInterceptors(
-                "org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;" +
+                "org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;"+
                         "org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer");
         dataSource.setPoolProperties(p);
 
