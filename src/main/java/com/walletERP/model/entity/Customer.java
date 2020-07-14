@@ -10,6 +10,7 @@ import java.util.Objects;
 @Component
 @Scope("prototype")
 public class Customer implements Comparable<Customer>, Serializable {
+    private static final long serialVersionUID = 399443145836441006L;
     private Long customerID;
     private String customerName;
     private String country;

@@ -10,6 +10,7 @@ import java.util.Objects;
 @Component
 @Scope("prototype")
 public class CustomerWrapper implements Comparable<CustomerWrapper>, Serializable {
+    private static final long serialVersionUID = 994936265412350194L;
     private Customer customer;
     private CustomerLogo customerLogo;
     private CustomerStatus customerStatus;

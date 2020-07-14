@@ -6,12 +6,14 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Component
 @Scope("prototype")
-public class TaxMapper implements RowMapper<CustomerTax> {
+public class TaxMapper implements RowMapper<CustomerTax>, Serializable {
+    private static final long serialVersionUID = 5649110073990394952L;
     private final CustomerTax tax;
 
     @Autowired

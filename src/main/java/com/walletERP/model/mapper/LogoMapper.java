@@ -6,12 +6,14 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Component
 @Scope("prototype")
-public class LogoMapper implements RowMapper<CustomerLogo> {
+public class LogoMapper implements RowMapper<CustomerLogo>, Serializable {
+    private static final long serialVersionUID = 1731941761629089568L;
     private final CustomerLogo logo;
 
     @Autowired

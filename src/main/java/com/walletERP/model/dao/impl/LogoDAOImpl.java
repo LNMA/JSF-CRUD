@@ -19,12 +19,13 @@ import java.util.List;
 
 @Repository
 public class LogoDAOImpl implements LogoDAO {
+    private static final long serialVersionUID = 1508091990011952333L;
     private NamedParameterJdbcTemplate jdbcNamedTemplate;
     private ApplicationContext context;
 
     @Autowired
-    public void setJdbcNamedTemplate(DataSource dataSource) {
-        this.jdbcNamedTemplate = new NamedParameterJdbcTemplate(dataSource);
+    public void setJdbcNamedTemplate(NamedParameterJdbcTemplate jdbcNamedTemplate) {
+        this.jdbcNamedTemplate = jdbcNamedTemplate;
     }
 
     @Autowired

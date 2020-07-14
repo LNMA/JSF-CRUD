@@ -3,9 +3,11 @@ package com.walletERP.model.dao;
 import com.walletERP.model.entity.Customer;
 import com.walletERP.model.entity.CustomerWrapper;
 
+import java.io.Serializable;
 import java.util.List;
 
-public interface CustomerDAO {
+public interface CustomerDAO extends Serializable {
+
     Long createCustomer(Customer customer);
 
     int updateCustomerByID(Customer customer);

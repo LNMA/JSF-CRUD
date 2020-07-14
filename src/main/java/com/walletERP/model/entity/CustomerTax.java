@@ -11,6 +11,7 @@ import java.util.Objects;
 @Component
 @Scope("prototype")
 public class CustomerTax implements Comparable<CustomerTax>, Serializable {
+    private static final long serialVersionUID = 2922731136300068462L;
     private Customer customer;
     private String taxNum;
 
@@ -55,7 +56,7 @@ public class CustomerTax implements Comparable<CustomerTax>, Serializable {
 
     @Override
     public String toString() {
-        return "CustomerStatus{" +
+        return "CustomerTax{" +
                 "customer=" + customer +
                 ", taxNum='" + taxNum + '\'' +
                 '}';

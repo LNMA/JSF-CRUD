@@ -12,6 +12,7 @@ import java.util.Objects;
 @Component
 @Scope("prototype")
 public class CustomerStatus implements Comparable<CustomerStatus>, Serializable {
+    private static final long serialVersionUID = -1864360941034343140L;
     private Customer customer;
     private boolean isActive;
     private java.sql.Timestamp lastModify;
@@ -64,7 +65,7 @@ public class CustomerStatus implements Comparable<CustomerStatus>, Serializable 
 
     @Override
     public String toString() {
-        return "CustomerTax{" +
+        return "CustomerStatus{" +
                 "customer=" + customer +
                 ", isActive=" + isActive +
                 ", lastModify=" + lastModify +

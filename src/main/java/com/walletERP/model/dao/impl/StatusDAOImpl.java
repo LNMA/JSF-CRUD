@@ -18,12 +18,13 @@ import java.util.List;
 
 @Repository
 public class StatusDAOImpl implements StatusDAO {
+    private static final long serialVersionUID = -7057686126877158452L;
     private NamedParameterJdbcTemplate jdbcNamedTemplate;
     private ApplicationContext context;
 
     @Autowired
-    public void setJdbcNamedTemplate(DataSource dataSource) {
-        this.jdbcNamedTemplate = new NamedParameterJdbcTemplate(dataSource);
+    public void setJdbcNamedTemplate(NamedParameterJdbcTemplate jdbcNamedTemplate) {
+        this.jdbcNamedTemplate = jdbcNamedTemplate;
     }
 
     @Autowired

@@ -12,69 +12,68 @@
     <title>Page 1</title>
 </h:head>
 
-<div class="ui-g">
-<div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
     <h:form>
         <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
 
-        <h3>Actions Facet</h3>
-        <p:tabView scrollable="true">
+        <h3>Show Customer</h3>
 
-            <p:toolbar>
-                <f:facet name="left">
-                    <p:commandButton type="button" value="New" icon="pi pi-file" />
-                </f:facet>
-            </p:toolbar>
+        <p:toolbar>
+            <f:facet name="left">
+                <p:commandButton type="button" value="New" icon="pi pi-file" />
+            </f:facet>
 
-            <p:tab title="Godfather Part I">
-                <f:facet name="actions">
-                    <p:menuButton value="Options">
-                        <p:menuitem value="Update" icon="pi pi-refresh"/>
-                        <p:menuitem value="Delete" ajax="false" icon="pi pi-times"/>
-                    </p:menuButton>
-                </f:facet>
+            <f:facet name="right">
+                <p:menuButton value="Options">
+                    <p:menuitem value="Update" icon="pi pi-refresh"/>
+                    <p:menuitem value="Delete" ajax="false" icon="pi pi-times"/>
+                </p:menuButton>
+            </f:facet>
+        </p:toolbar>
 
+        <p:tabView scrollable="true" value="#{viewModelController.customerAllInfo}" var="list" cache="true">
+
+            <p:tab title="#{list.customer.customerID}: #{list.customer.customerName}" >
                 <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
-                    <p:graphicImage name="cuustomerImg" value=""/>
+                    <p:graphicImage name="cuustomerImg" value="data:image/png;base64,#{list.customerLogo.base64}"/>
                     <h:outputText value="Uplaod Date : " style="font-weight: lighter"/>
                     <h:outputText value="" style="font-weight: lighter"/>
 
-                    <ui:repeat value="#{viewModelController.customerDAO.retrieveAllCustomer}" var="list">
                     <p:outputPanel>
                         <h:panelGrid columns="2" cellpadding="5">
                             <h:outputText value="Register Date : " />
-                            <h:outputText value="#{list.customerName}" style="font-weight: bold"/>
+                            <h:outputText value="#{list.customer.createDate}" style="font-weight: bold"/>
 
                             <h:outputText value="Customer Name : " />
-                            <h:outputText value="" style="font-weight: bold"/>
+                            <h:outputText value="#{list.customer.customerName}" style="font-weight: bold"/>
 
                             <h:outputText value="Country : " />
-                            <h:outputText value="" style="font-weight: bold"/>
+                            <h:outputText value="#{list.customer.country}" style="font-weight: bold"/>
 
                             <h:outputText value="City : " />
-                            <h:outputText value="" style="font-weight: bold"/>
+                            <h:outputText value="#{list.customer.state}" style="font-weight: bold"/>
 
                             <h:outputText value="Address : " />
-                            <h:outputText value="" style="font-weight: bold"/>
+                            <h:outputText value="#{list.customer.address}" style="font-weight: bold"/>
 
                             <h:outputText value="Tax Number : " />
-                            <h:outputText value="" style="font-weight: bold"/>
+                            <h:outputText value="#{list.customerTax.taxNum}" style="font-weight: bold"/>
 
                             <h:outputText value="Is Status Active : " />
-                            <h:outputText value="" style="font-weight: bold"/>
+                            <h:outputText value="#{list.customerStatus.active}" style="font-weight: bold"/>
 
                             <h:outputText value="Last Status Change : " />
-                            <h:outputText value="" style="font-weight: bold"/>
+                            <h:outputText value="#{list.customerStatus.lastModify}" style="font-weight: bold"/>
                         </h:panelGrid>
+
                     </p:outputPanel>
-                    </ui:repeat>
 
                 </h:panelGrid>
             </p:tab>
 
+
+
         </p:tabView>
 
     </h:form>
-</div>
-</div>
+
 </html>

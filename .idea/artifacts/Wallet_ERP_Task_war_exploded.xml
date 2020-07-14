@@ -1,10 +1,10 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="Wallet-ERP-Task:war exploded">
+  <artifact type="exploded-war" name="Wallet_ERP-Task:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/Wallet_ERP_Task_war_exploded</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="Wallet-ERP-Task" />
+          <element id="module-output" name="Wallet_ERP-Task" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.springframework:spring-context:5.1.16.RELEASE" />
@@ -19,12 +19,12 @@
           <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-jdbc:9.0.36" />
           <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-juli:9.0.36" />
           <element id="library" level="project" name="Maven: org.glassfish:javax.faces:2.3.2" />
-          <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+          <element id="library" level="module" name="Maven: com.sun:tools-jar:1" module-name="Wallet_ERP-Task" />
           <element id="library" level="project" name="Maven: org.primefaces:primefaces:8.0" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.20" />
         </element>
       </element>
-      <element id="javaee-facet-resources" facet="Wallet-ERP-Task/web/Web" />
+      <element id="javaee-facet-resources" facet="Wallet_ERP-Task/web/Web" />
     </root>
   </artifact>
 </component>

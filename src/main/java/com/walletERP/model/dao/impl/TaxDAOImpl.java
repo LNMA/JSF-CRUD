@@ -18,12 +18,13 @@ import java.util.List;
 
 @Repository
 public class TaxDAOImpl implements TaxDAO {
+    private static final long serialVersionUID = -2093800252090242591L;
     private NamedParameterJdbcTemplate jdbcNamedTemplate;
     private ApplicationContext context;
 
     @Autowired
-    public void setJdbcNamedTemplate(DataSource dataSource) {
-        this.jdbcNamedTemplate = new NamedParameterJdbcTemplate(dataSource);
+    public void setJdbcNamedTemplate(NamedParameterJdbcTemplate jdbcNamedTemplate) {
+        this.jdbcNamedTemplate = jdbcNamedTemplate;
     }
 
     @Autowired

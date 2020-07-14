@@ -15,18 +15,19 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.io.Serializable;
 import java.sql.Types;
 import java.util.List;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO {
+    private static final long serialVersionUID = -2877407578749513337L;
     private NamedParameterJdbcTemplate jdbcNamedTemplate;
-
     private ApplicationContext context;
 
     @Autowired
-    public void setJdbcNamedTemplate(DataSource dataSource) {
-        this.jdbcNamedTemplate = new NamedParameterJdbcTemplate(dataSource);
+    public void setJdbcNamedTemplate(NamedParameterJdbcTemplate jdbcNamedTemplate) {
+        this.jdbcNamedTemplate = jdbcNamedTemplate;
     }
 
     @Autowired

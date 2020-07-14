@@ -14,6 +14,7 @@ import java.util.Objects;
 @Component
 @Scope("prototype")
 public class CustomerLogo implements Comparable<CustomerLogo>, Serializable {
+    private static final long serialVersionUID = -759570026208211998L;
     private Customer customer;
     private byte[] picture;
     private String name;

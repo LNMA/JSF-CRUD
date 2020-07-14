@@ -3,37 +3,25 @@ package com.walletERP.controller.service.view;
 import com.walletERP.model.dao.CustomerDAO;
 import com.walletERP.model.entity.CustomerWrapper;
 
+import javax.annotation.ManagedBean;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.io.Serializable;
+import java.util.List;
 
-
-@Named
+@ManagedBean
 @RequestScoped
 public class ViewModelController implements Serializable {
-    private CustomerWrapper customerWrapper;
-    private CustomerDAO customerDAO;
+    private static final long serialVersionUID = 5267453387933706238L;
+    private final CustomerDAO customerDAO;
 
     @Inject
-    public ViewModelController(CustomerWrapper customerWrapper, CustomerDAO customerDAO) {
-        this.customerWrapper = customerWrapper;
+    public ViewModelController(CustomerDAO customerDAO) {
         this.customerDAO = customerDAO;
+        System.out.println(this.customerDAO.retrieveAllCustomerInfo().get(0).toString());
     }
 
-    public CustomerWrapper getCustomerWrapper() {
-        return customerWrapper;
-    }
-
-    public void setCustomerWrapper(CustomerWrapper customerWrapper) {
-        this.customerWrapper = customerWrapper;
-    }
-
-    public CustomerDAO getCustomerDAO() {
-        return customerDAO;
-    }
-
-    public void setCustomerDAO(CustomerDAO customerDAO) {
-        this.customerDAO = customerDAO;
+    public List<CustomerWrapper> getCustomerAllInfo(){
+        return this.customerDAO.retrieveAllCustomerInfo();
     }
 }

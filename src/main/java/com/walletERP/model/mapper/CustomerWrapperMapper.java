@@ -6,12 +6,14 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Component
 @Scope("prototype")
-public class CustomerWrapperMapper implements RowMapper<CustomerWrapper> {
+public class CustomerWrapperMapper implements RowMapper<CustomerWrapper>, Serializable {
+    private static final long serialVersionUID = 1519478285758683372L;
     private final CustomerWrapper customerWrapper;
 
     @Autowired
