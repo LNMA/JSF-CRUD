@@ -13,7 +13,6 @@ import org.springframework.jdbc.core.support.SqlLobValue;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
 import java.sql.Types;
 import java.util.List;
 

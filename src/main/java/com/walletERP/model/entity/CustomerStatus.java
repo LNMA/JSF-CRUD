@@ -1,7 +1,6 @@
 package com.walletERP.model.entity;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -12,9 +11,9 @@ import java.util.Objects;
 @Component
 @Scope("prototype")
 public class CustomerStatus implements Comparable<CustomerStatus>, Serializable {
-    private static final long serialVersionUID = -1864360941034343140L;
+    private static final long serialVersionUID = -1764322481218453097L;
     private Customer customer;
-    private boolean isActive;
+    private Boolean active;
     private java.sql.Timestamp lastModify;
 
     public CustomerStatus() {
@@ -29,12 +28,12 @@ public class CustomerStatus implements Comparable<CustomerStatus>, Serializable 
         this.customer = customer;
     }
 
-    public boolean isActive() {
-        return isActive;
+    public Boolean getActive() {
+        return active;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     public Timestamp getLastModify() {
@@ -67,7 +66,7 @@ public class CustomerStatus implements Comparable<CustomerStatus>, Serializable 
     public String toString() {
         return "CustomerStatus{" +
                 "customer=" + customer +
-                ", isActive=" + isActive +
+                ", isActive=" + active +
                 ", lastModify=" + lastModify +
                 '}';
     }

@@ -15,8 +15,8 @@
                           connection-validation-method="auto-commit"
                           fail-all-connections="false">
         <property name="URL" value="jdbc:mysql://localhost:3306/wallet-erp?useSSL=false"/>
-        <property name="User" value="root"/>
-        <property name="Password" value="1729384#General"/>
+        <property name="User" value="${username}"/> <!--TODO : your username-->
+        <property name="Password" value="${password}"/> <!--TODO : your password-->
         <property name="MaxStatements" value="200"/>
         <property name="ImplicitCachingEnabled" value="true"/>
     </jdbc-connection-pool>

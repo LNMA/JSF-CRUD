@@ -4,7 +4,6 @@ import org.apache.tomcat.jdbc.pool.PoolProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.sql.DataSource;
@@ -13,14 +12,13 @@ import javax.sql.DataSource;
 @ComponentScan(basePackages = {"com.walletERP.model"})
 public class DBConfig {
     @Bean
-    @Primary
     public DataSource mysqlDataSource() {
         org.apache.tomcat.jdbc.pool.DataSource dataSource = new org.apache.tomcat.jdbc.pool.DataSource();
         PoolProperties p = new PoolProperties();
-        p.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        p.setUrl("jdbc:mysql://localhost:3306/wallet-erp?useSSL=false");
-        p.setUsername("root");
-        p.setPassword("1729384#General");
+        p.setDriverClassName("com.mysql.cj.jdbc.Driver"); //TODO : please add suitable class driver for database
+        p.setUrl("jdbc:mysql://localhost:3306/wallet-erp?useSSL=false"); //TODO : please add schema url
+        p.setUsername("${username}"); //TODO : add your database account username
+        p.setPassword("${password}"); //TODO : add your database account password
         p.setMaxActive(100);
         p.setMaxIdle(100);
         p.setMinIdle(10);

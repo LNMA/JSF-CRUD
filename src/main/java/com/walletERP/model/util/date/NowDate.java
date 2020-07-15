@@ -1,4 +1,4 @@
-package com.walletERP.model.util;
+package com.walletERP.model.util.date;
 
 import java.sql.Date;
 import java.sql.Time;

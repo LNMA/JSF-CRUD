@@ -6,6 +6,7 @@ import org.springframework.context.annotation.*;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.jdbc.support.lob.DefaultLobHandler;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -32,6 +33,12 @@ public class ModelBeansFactory {
     @Scope("prototype")
     public KeyHolder buildGeneratedKeyHolder(){
         return new GeneratedKeyHolder();
+    }
+
+    @Bean(name = "buildDefaultLobHandler")
+    @Scope("prototype")
+    public DefaultLobHandler buildDefaultLobHandler(){
+        return new DefaultLobHandler();
     }
 
     @Bean("customerContainer")

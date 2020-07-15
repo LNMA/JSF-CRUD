@@ -12,7 +12,6 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
 import java.sql.Types;
 import java.util.List;
 
@@ -52,7 +51,7 @@ public class StatusDAOImpl implements StatusDAO {
     private SqlParameterSource buildCustomerStatusParameter(CustomerStatus customerStatus){
         MapSqlParameterSource param = (MapSqlParameterSource) this.context.getBean("buildMapParameter");
         param.addValue("customer_id", customerStatus.getCustomer().getCustomerID(), Types.BIGINT);
-        param.addValue("active", customerStatus.isActive(), Types.TINYINT);
+        param.addValue("active", customerStatus.getActive(), Types.TINYINT);
         param.addValue("last_modify", customerStatus.getLastModify(), Types.TIMESTAMP);
 
         return param;

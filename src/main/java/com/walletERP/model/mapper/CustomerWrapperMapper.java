@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Component
-@Scope("prototype")
 public class CustomerWrapperMapper implements RowMapper<CustomerWrapper>, Serializable {
     private static final long serialVersionUID = 1519478285758683372L;
     private final CustomerWrapper customerWrapper;

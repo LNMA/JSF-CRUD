@@ -9,6 +9,10 @@
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
     <title>Page 1</title>
 </h:head>
 <h:body style="background-color: #9a9a9a">
@@ -18,8 +22,8 @@
         <div class="ui-g">
             <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
                 <p:menubar>
-                    <p:menuitem url="../faces/model-home.xhtml">
-                        <h2 style="text-align: center; color: white">Show Customer</h2>
+                    <p:menuitem url="#{request.contextPath}/faces/model-home.xhtml">
+                        <h2 style="text-align: center; color: white">Show Customers</h2>
                     </p:menuitem>
                 </p:menubar>
             </div>
@@ -29,7 +33,7 @@
             <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
                 <p:toolbar>
                     <f:facet name="left">
-                        <p:commandButton type="button" value="New" icon="pi pi-file"/>
+                        <p:button outcome="register-edit.xhtml" value="New" icon="pi pi-file"/>
                     </f:facet>
                 </p:toolbar>
             </div>
@@ -37,71 +41,77 @@
 
         <div class="ui-g">
             <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
-                <p:tabView scrollable="true" value="#{viewModelController.customerAllInfo}" var="list">
-
+                <p:tabView scrollable="true" value="#{viewCustomersBean.customerAllInfo}" var="list">
                     <p:tab title="#{list.customer.customerID}: #{list.customer.customerName}">
+                        <p:panelGrid columns="2" layout="grid" columnClasses="logo,detail">
 
-                        <h:panelGrid columns="3" style="width:100%" columnClasses="logo,detail">
-
-                            <div class="ui-g">
-
-                                <div class="ui-g-4 ui-sm-4 ui-md-4 ui-lg-4">
-                                    <p:outputPanel>
-                                        <p:graphicImage name="cuustomerImg"
-                                                        value="data:image/png;base64,#{list.customerLogo.base64}"/>
-                                        <h:outputText value="Uplaod Date : " style="font-weight: lighter"/>
-                                        <h:outputText value="" style="font-weight: lighter"/>
-                                    </p:outputPanel>
+                            <p:outputPanel>
+                                <div class="ui-gi">
+                                    <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
+                                        <h:graphicImage value="data:image/png;base64,#{list.customerLogo.base64}"
+                                                        style="width: 300px; height: 300px;"/>
+                                        <br/>
+                                        <h:outputText for="outUploadDate" value="Uplaod Date : "
+                                                      style="font-weight: lighter"/>
+                                        <h:outputText id="outUploadDate" value="#{list.customerLogo.uploadDate}"
+                                                      style="font-weight: lighter"/>
+                                    </div>
                                 </div>
+                            </p:outputPanel>
 
-                                <div class="ui-g-7 ui-sm-7 ui-md-7 ui-lg-7">
-                                    <p:outputPanel>
+                            <p:outputPanel>
+                                <h:panelGrid columns="2" cellpadding="10">
 
-                                        <h:panelGrid columns="2" cellpadding="5">
+                                    <h:outputText value="Register Date : "/>
+                                    <h:outputText value="#{list.customer.createDate}"
+                                                  style="font-weight: bold"/>
 
-                                            <h:outputText value="Register Date : "/>
-                                            <h:outputText value="#{list.customer.createDate}"
-                                                          style="font-weight: bold"/>
+                                    <h:outputText value="Customer Name : "/>
+                                    <h:outputText value="#{list.customer.customerName}"
+                                                  style="font-weight: bold"/>
 
-                                            <h:outputText value="Customer Name : "/>
-                                            <h:outputText value="#{list.customer.customerName}"
-                                                          style="font-weight: bold"/>
+                                    <h:outputText value="Country : "/>
+                                    <h:outputText value="#{list.customer.country}"
+                                                  style="font-weight: bold"/>
 
-                                            <h:outputText value="Country : "/>
-                                            <h:outputText value="#{list.customer.country}" style="font-weight: bold"/>
+                                    <h:outputText value="City : "/>
+                                    <h:outputText value="#{list.customer.state}" style="font-weight: bold"/>
 
-                                            <h:outputText value="City : "/>
-                                            <h:outputText value="#{list.customer.state}" style="font-weight: bold"/>
+                                    <h:outputText value="Address : "/>
+                                    <h:outputText value="#{list.customer.address}"
+                                                  style="font-weight: bold"/>
 
-                                            <h:outputText value="Address : "/>
-                                            <h:outputText value="#{list.customer.address}" style="font-weight: bold"/>
+                                    <h:outputText value="Tax Number : "/>
+                                    <h:outputText value="#{list.customerTax.taxNum}"
+                                                  style="font-weight: bold"/>
 
-                                            <h:outputText value="Tax Number : "/>
-                                            <h:outputText value="#{list.customerTax.taxNum}" style="font-weight: bold"/>
+                                    <h:outputText value="Is Status Active : "/>
+                                    <h:outputText value="#{list.customerStatus.active}"
+                                                  style="font-weight: bold"/>
 
-                                            <h:outputText value="Is Status Active : "/>
-                                            <h:outputText value="#{list.customerStatus.active}"
-                                                          style="font-weight: bold"/>
+                                    <h:outputText value="Last Modify Status : "/>
+                                    <h:outputText value="#{list.customerStatus.lastModify}"
+                                                  style="font-weight: bold"/>
 
-                                            <h:outputText value="Last Status Change : "/>
-                                            <h:outputText value="#{list.customerStatus.lastModify}"
-                                                          style="font-weight: bold"/>
+                                    <f:facet name="footer">
+                                        <p:menuButton value="Options">
+                                            <p:menuitem value="Update" icon="pi pi-refresh"/>
+                                            <p:menuitem value="Delete" ajax="false" icon="pi pi-times">
+                                                <h:form id="deleteForm">
+                                                    <h:inputHidden value="#{list.customer.customerID}" id="customerIdDelete"/>
+                                                    <p:commandButton value="Delete" id="submitDelete"
+                                                                     action="#{deleteCustomersBean.deleteCustomer}"/>
+                                                </h:form>
+                                            </p:menuitem>
+                                        </p:menuButton>
+                                    </f:facet>
 
-                                            <f:facet name="footer">
-                                                <p:menuButton value="Options">
-                                                    <p:menuitem value="Update" icon="pi pi-refresh"/>
-                                                    <p:menuitem value="Delete" ajax="false" icon="pi pi-times"/>
-                                                </p:menuButton>
-                                            </f:facet>
-                                        </h:panelGrid>
-                                    </p:outputPanel>
-                                </div>
+                                </h:panelGrid>
+                            </p:outputPanel>
 
-                            </div>
-                        </h:panelGrid>
 
+                        </p:panelGrid>
                     </p:tab>
-
                 </p:tabView>
             </div>
         </div>

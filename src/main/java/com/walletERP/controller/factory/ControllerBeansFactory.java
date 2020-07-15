@@ -9,10 +9,11 @@ import com.walletERP.model.dao.impl.LogoDAOImpl;
 import com.walletERP.model.dao.impl.StatusDAOImpl;
 import com.walletERP.model.dao.impl.TaxDAOImpl;
 import com.walletERP.model.entity.*;
+import com.walletERP.model.util.file.FileProcess;
 import org.springframework.context.annotation.*;
 
 @Configuration
-@ComponentScan({"com.walletERP.model", "com.walletERP.controller"})
+@ComponentScan(basePackages = {"com.walletERP.model", "com.walletERP.controller"})
 public class ControllerBeansFactory {
 
     @Bean
@@ -67,5 +68,11 @@ public class ControllerBeansFactory {
     @Scope("prototype")
     public TaxDAO taxDAO(){
         return new TaxDAOImpl();
+    }
+
+    @Bean
+    @Scope("prototype")
+    public FileProcess fileProcess(){
+        return new FileProcess();
     }
 }
