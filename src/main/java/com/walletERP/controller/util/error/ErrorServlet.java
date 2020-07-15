@@ -37,12 +37,10 @@ public class ErrorServlet extends HttpServlet implements Serializable {
                 "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\n" +
                 "    <style>\n" +
                 "        @import url(" + request.getContextPath() + "/libr/bootstrap-4.4.1/css/bootstrap.min.css);\n" +
-                "        @import url(" + request.getContextPath() + "/libr/bootstrap-formHelper-2.3.0/dist/css/bootstrap-formhelpers.min.css);\n" +
                 "    </style>\n" +
                 "    <script src=\"" + request.getContextPath() + "/libr/jQuery-3.4.1/jquery.min.js\"></script>\n" +
                 "    <script src=\"" + request.getContextPath() + "/libr/popper-1.16/popper.js\"></script>\n" +
                 "    <script src=\"" + request.getContextPath() + "/bootstrap-4.4.1/js/bootstrap.bundle.min.js\"></script>\n" +
-                "    <script src=\"" + request.getContextPath() + "/libr/bootstrap-formHelper-2.3.0/dist/js/bootstrap-formhelpers.min.js\"></script>\n" +
                 "    <title>Error! `by Louay Amr`</title>\n" +
                 "</head>\n" +
                 "<body>\n" +
@@ -92,12 +90,10 @@ public class ErrorServlet extends HttpServlet implements Serializable {
                 "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\n" +
                 "    <style>\n" +
                 "        @import url(" + request.getContextPath() + "/libr/bootstrap-4.4.1/css/bootstrap.min.css);\n" +
-                "        @import url(" + request.getContextPath() + "/libr/bootstrap-formHelper-2.3.0/dist/css/bootstrap-formhelpers.min.css);\n" +
                 "    </style>\n" +
                 "    <script src=\"" + request.getContextPath() + "/libr/jQuery-3.4.1/jquery.min.js\"></script>\n" +
                 "    <script src=\"" + request.getContextPath() + "/libr/popper-1.16/popper.js\"></script>\n" +
                 "    <script src=\"" + request.getContextPath() + "/bootstrap-4.4.1/js/bootstrap.bundle.min.js\"></script>\n" +
-                "    <script src=\"" + request.getContextPath() + "/libr/bootstrap-formHelper-2.3.0/dist/js/bootstrap-formhelpers.min.js\"></script>\n" +
                 "    <title>Error! `by Louay Amr`</title>\n" +
                 "</head>\n" +
                 "<body>\n" +
