@@ -16,7 +16,9 @@ public interface CustomerDAO extends Serializable {
 
     Customer retrieveCustomerByID(Customer customer);
 
-    List<Customer> retrieveAllCustomer();
+    List<Customer>  retrieveAllCustomer();
 
     List<CustomerWrapper> retrieveAllCustomerInfo();
+
+    CustomerWrapper retrieveAllCustomerInfoByID(Customer customer);
 }

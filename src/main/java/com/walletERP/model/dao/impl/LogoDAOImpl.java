@@ -42,14 +42,14 @@ public class LogoDAOImpl implements LogoDAO {
                 "VALUES (:customer_id, :picture, :name, :upload_date );";
 
         int result = this.jdbcNamedTemplate.update(sql, param, keyHolder);
-        if (result > 0 && keyHolder.getKey() != null){
+        if (result > 0 && keyHolder.getKey() != null) {
             return keyHolder.getKey().longValue();
-        }else {
-            return (long)-1;
+        } else {
+            return (long) -1;
         }
     }
 
-    private SqlParameterSource buildCustomerLogoParameter(CustomerLogo customerLogo){
+    private SqlParameterSource buildCustomerLogoParameter(CustomerLogo customerLogo) {
         MapSqlParameterSource param = (MapSqlParameterSource) this.context.getBean("buildMapParameter");
         param.addValue("customer_id", customerLogo.getCustomer().getCustomerID(), Types.BIGINT);
         param.addValue("picture", new SqlLobValue(customerLogo.getPicture()), Types.BLOB);
@@ -86,7 +86,7 @@ public class LogoDAOImpl implements LogoDAO {
         SqlParameterSource param = buildCustomerLogoParameter(customerLogo);
         //language=MySQL
         final String sql = "SELECT * FROM `customer-logo` WHERE `customer_id` = :customer_id;";
-        return (CustomerLogo) this.jdbcNamedTemplate.query(sql, param, this.context.getBean(LogoMapper.class));
+        return this.jdbcNamedTemplate.queryForObject(sql, param, this.context.getBean(LogoMapper.class));
     }
 
     @Override

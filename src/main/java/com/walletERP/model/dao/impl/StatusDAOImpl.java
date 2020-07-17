@@ -41,14 +41,14 @@ public class StatusDAOImpl implements StatusDAO {
                 "(:customer_id, :active, :last_modify );";
 
         int result = this.jdbcNamedTemplate.update(sql, param, keyHolder);
-        if (result > 0 && keyHolder.getKey() != null){
+        if (result > 0 && keyHolder.getKey() != null) {
             return keyHolder.getKey().longValue();
-        }else {
-            return (long)-1;
+        } else {
+            return (long) -1;
         }
     }
 
-    private SqlParameterSource buildCustomerStatusParameter(CustomerStatus customerStatus){
+    private SqlParameterSource buildCustomerStatusParameter(CustomerStatus customerStatus) {
         MapSqlParameterSource param = (MapSqlParameterSource) this.context.getBean("buildMapParameter");
         param.addValue("customer_id", customerStatus.getCustomer().getCustomerID(), Types.BIGINT);
         param.addValue("active", customerStatus.getActive(), Types.TINYINT);
@@ -83,11 +83,11 @@ public class StatusDAOImpl implements StatusDAO {
         SqlParameterSource param = buildCustomerStatusParameter(customerStatus);
         //language=MySQL
         final String sql = "SELECT * FROM `customer-status` WHERE `customer_id` = :customer_id;";
-        return (CustomerStatus) this.jdbcNamedTemplate.query(sql, param, this.context.getBean(StatusMapper.class));
+        return this.jdbcNamedTemplate.queryForObject(sql, param, this.context.getBean(StatusMapper.class));
     }
 
     @Override
-    public List<CustomerStatus> retrieveAllCustomerStatus( ) {
+    public List<CustomerStatus> retrieveAllCustomerStatus() {
         //language=MySQL
         final String sql = "SELECT * FROM `customer-status`;";
 

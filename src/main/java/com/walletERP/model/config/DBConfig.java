@@ -17,8 +17,8 @@ public class DBConfig {
         PoolProperties p = new PoolProperties();
         p.setDriverClassName("com.mysql.cj.jdbc.Driver"); //TODO : please add suitable class driver for database
         p.setUrl("jdbc:mysql://localhost:3306/wallet-erp?useSSL=false"); //TODO : please add schema url
-        p.setUsername("${username}"); //TODO : add your database account username
-        p.setPassword("${password}"); //TODO : add your database account password
+        p.setUsername("root"); //TODO : add your database account username
+        p.setPassword("1729384#General"); //TODO : add your database account password
         p.setMaxActive(100);
         p.setMaxIdle(100);
         p.setMinIdle(10);

@@ -73,8 +73,8 @@ public class Customer implements Comparable<Customer>, Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Customer that = (Customer) o;
-        return getCustomerID().compareTo(that.getCustomerID()) == 0;
+        Customer customer = (Customer) o;
+        return getCustomerID().compareTo(customer.getCustomerID()) == 0;
     }
 
     @Override
@@ -89,13 +89,13 @@ public class Customer implements Comparable<Customer>, Serializable {
 
     @Override
     public String toString() {
-        return "CustomerDetails{" +
+        return "Customer{" +
                 "customerID=" + customerID +
                 ", customerName='" + customerName + '\'' +
                 ", country='" + country + '\'' +
                 ", state='" + state + '\'' +
                 ", address='" + address + '\'' +
-                ", createDate='" + createDate + '\'' +
+                ", createDate=" + createDate +
                 '}';
     }
 }

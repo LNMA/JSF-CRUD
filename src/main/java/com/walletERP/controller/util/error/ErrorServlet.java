@@ -9,6 +9,7 @@ import java.io.Serializable;
 
 public class ErrorServlet extends HttpServlet implements Serializable {
 
+
     private static final long serialVersionUID = 5612138839830244177L;
 
     @Override

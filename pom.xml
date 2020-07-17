@@ -86,7 +86,6 @@
       <version>1.4</version>
     </dependency>
 
-
     <!--TODO: change it to your suitable version-->
     <dependency>
       <groupId>mysql</groupId>

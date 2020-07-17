@@ -12,19 +12,18 @@ import org.primefaces.model.file.UploadedFile;
 
 import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class CreateCustomerBean implements Serializable {
-    private static final long serialVersionUID = -8180129954271174492L;
+    private static final long serialVersionUID = -1095106632883042268L;
     private CustomerWrapper customerWrapper;
     private final CustomerDAO customerDAO;
     private final LogoDAO logoDAO;
@@ -258,7 +257,7 @@ public class CreateCustomerBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
-    public void saveCustomer() {
+    public String saveCustomer() {
         if (isCustomerFieldValid()) {
             Long customerID = saveCustomerDetails();
             saveCustomerStatus(customerID);
@@ -273,23 +272,14 @@ public class CreateCustomerBean implements Serializable {
             FacesMessage msg = new FacesMessage("Wrong", "All require field must fills.");
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
-    }
 
-    private byte[] uploadDefaultImg() {
-        byte[] bytes = null;
-        try {
-            //TODO change path to your path
-            bytes = this.fileProcess.readAPicture("C:\\Users\\Oday Amr\\Documents\\IdeaProjects\\Wallet_ERP-Task\\src\\main\\resources\\img\\no-logo.png");
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        return bytes;
+        return "home";
     }
 
     private void saveCustomerLogo(Long customerID) {
         this.customerWrapper.getCustomerLogo().getCustomer().setCustomerID(customerID);
         if (this.fileContents == null) {
-            this.customerWrapper.getCustomerLogo().setPicture(uploadDefaultImg());
+            this.customerWrapper.getCustomerLogo().setPicture(this.fileProcess.uploadDefaultImg());
             this.customerWrapper.getCustomerLogo().setName("no-logo.png");
 
         } else {

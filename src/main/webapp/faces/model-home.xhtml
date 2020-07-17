@@ -22,7 +22,7 @@
         <div class="ui-g">
             <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
                 <p:menubar>
-                    <p:menuitem url="#{request.contextPath}/faces/model-home.xhtml">
+                    <p:menuitem url="#{request.contextPath}/faces/model-home.xhtml?faces-redirect = true">
                         <h2 style="text-align: center; color: white">Show Customers</h2>
                     </p:menuitem>
                 </p:menubar>
@@ -49,7 +49,7 @@
                                 <div class="ui-gi">
                                     <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
                                         <h:graphicImage value="data:image/png;base64,#{list.customerLogo.base64}"
-                                                        style="width: 300px; height: 300px;"/>
+                                                        style="width: 270px; height: 270px;"/>
                                         <br/>
                                         <h:outputText for="outUploadDate" value="Uplaod Date : "
                                                       style="font-weight: lighter"/>
@@ -96,12 +96,11 @@
                                     <f:facet name="footer">
                                         <p:menuButton value="Options">
                                             <p:menuitem value="Update" icon="pi pi-refresh"/>
-                                            <p:menuitem value="Delete" ajax="false" icon="pi pi-times">
-                                                <h:form id="deleteForm">
-                                                    <h:inputHidden value="#{list.customer.customerID}" id="customerIdDelete"/>
-                                                    <p:commandButton value="Delete" id="submitDelete"
-                                                                     action="#{deleteCustomersBean.deleteCustomer}"/>
-                                                </h:form>
+                                            <p:menuitem value="Delete" id="submitDelete" icon="pi pi-times"
+                                                        update="growl" ajax="false"
+                                                        action="#{deleteCustomersBean.deleteCustomer}">
+                                                <f:param value="#{list.customer.customerID}" id="customerIdDelete"
+                                                         name="customerIdDelete"/>
                                             </p:menuitem>
                                         </p:menuButton>
                                     </f:facet>

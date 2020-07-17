@@ -60,10 +60,10 @@ public class CustomerWrapper implements Comparable<CustomerWrapper>, Serializabl
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CustomerWrapper that = (CustomerWrapper) o;
-        return Objects.equals(getCustomer(), that.getCustomer()) &&
-                Objects.equals(getCustomerLogo(), that.getCustomerLogo()) &&
-                Objects.equals(getCustomerStatus(), that.getCustomerStatus()) &&
-                Objects.equals(getCustomerTax(), that.getCustomerTax());
+        return getCustomer().equals(that.getCustomer()) &&
+                getCustomerLogo().equals(that.getCustomerLogo()) &&
+                getCustomerStatus().equals(that.getCustomerStatus()) &&
+                getCustomerTax().equals(that.getCustomerTax());
     }
 
     @Override

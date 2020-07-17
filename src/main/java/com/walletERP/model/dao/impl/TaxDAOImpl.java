@@ -40,14 +40,14 @@ public class TaxDAOImpl implements TaxDAO {
         final String sql = "INSERT INTO `customer-tax`(`customer_id`, `tax_num`) VALUES (:customer_id, :tax_num);";
 
         int result = this.jdbcNamedTemplate.update(sql, param, keyHolder);
-        if (result > 0 && keyHolder.getKey() != null){
+        if (result > 0 && keyHolder.getKey() != null) {
             return keyHolder.getKey().longValue();
-        }else {
-            return (long)-1;
+        } else {
+            return (long) -1;
         }
     }
 
-    private SqlParameterSource buildCustomerTaxParameter(CustomerTax customerTax){
+    private SqlParameterSource buildCustomerTaxParameter(CustomerTax customerTax) {
         MapSqlParameterSource param = (MapSqlParameterSource) this.context.getBean("buildMapParameter");
         param.addValue("customer_id", customerTax.getCustomer().getCustomerID(), Types.BIGINT);
         param.addValue("tax_num", customerTax.getTaxNum(), Types.VARCHAR);
@@ -80,7 +80,7 @@ public class TaxDAOImpl implements TaxDAO {
         SqlParameterSource param = buildCustomerTaxParameter(customerTax);
         //language=MySQL
         final String sql = "SELECT * FROM `customer-tax` WHERE `customer_id` = :customer_id;";
-        return (CustomerTax) this.jdbcNamedTemplate.query(sql, param, this.context.getBean(TaxMapper.class));
+        return this.jdbcNamedTemplate.queryForObject(sql, param, this.context.getBean(TaxMapper.class));
     }
 
     @Override
