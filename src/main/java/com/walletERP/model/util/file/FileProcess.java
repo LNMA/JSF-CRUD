@@ -42,7 +42,7 @@ public class FileProcess implements Serializable {
         byte[] bytes = null;
         try {
             //TODO change path to your path
-            bytes = this.readAPicture("C:\\Users\\Oday Amr\\Documents\\IdeaProjects\\Wallet_ERP-Task\\src\\main\\resources\\img\\no-logo.png");
+            bytes = this.readAPicture("${your path}\\Wallet_ERP-Task\\src\\main\\resources\\img\\no-logo.png");
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
