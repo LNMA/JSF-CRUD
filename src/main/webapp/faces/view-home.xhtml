@@ -15,14 +15,15 @@
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <title>Page 1</title>
 </h:head>
-<h:body style="background-color: #9a9a9a">
-    <p:growl id="growl" sticky="true" showDetail="true"/>
 
+<h:body style="background-color: #9a9a9a">
     <h:form>
+        <p:growl id="growl" sticky="true" showDetail="true"/>
+
         <div class="ui-g">
             <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
                 <p:menubar>
-                    <p:menuitem url="#{request.contextPath}/faces/model-home.xhtml?faces-redirect = true">
+                    <p:menuitem url="#{request.contextPath}/faces/view-home.xhtml?faces-redirect = true">
                         <h2 style="text-align: center; color: white">Show Customers</h2>
                     </p:menuitem>
                 </p:menubar>
@@ -33,7 +34,7 @@
             <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
                 <p:toolbar>
                     <f:facet name="left">
-                        <p:button outcome="register-edit.xhtml" value="New" icon="pi pi-file"/>
+                        <p:button outcome="register-customer.xhtml" value="New" icon="pi pi-file"/>
                     </f:facet>
                 </p:toolbar>
             </div>
@@ -95,7 +96,11 @@
 
                                     <f:facet name="footer">
                                         <p:menuButton value="Options">
-                                            <p:menuitem value="Update" icon="pi pi-refresh"/>
+                                            <p:menuitem value="Update" icon="pi pi-refresh" ajax="false" update="growl"
+                                                        id="editSubmit" action="#{editCustomersBean.prepareEditPage}">
+                                                <f:param value="#{list.customer.customerID}" id="customerIdEdit"
+                                                         name="customerIdEdit"/>
+                                            </p:menuitem>
                                             <p:menuitem value="Delete" id="submitDelete" icon="pi pi-times"
                                                         update="growl" ajax="false"
                                                         action="#{deleteCustomersBean.deleteCustomer}">
@@ -104,17 +109,14 @@
                                             </p:menuitem>
                                         </p:menuButton>
                                     </f:facet>
-
                                 </h:panelGrid>
                             </p:outputPanel>
-
 
                         </p:panelGrid>
                     </p:tab>
                 </p:tabView>
             </div>
         </div>
-
     </h:form>
 </h:body>
 </html>

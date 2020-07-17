@@ -8,20 +8,41 @@
     </application>
 
     <navigation-rule>
-        <from-view-id>/faces/register-edit.xhtml</from-view-id>
+        <from-view-id>/faces/register-customer.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{createCustomerBean.saveCustomer}</from-action>
             <from-outcome>home</from-outcome>
-            <to-view-id>/faces/model-home.xhtml</to-view-id>
+            <to-view-id>/faces/view-home.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/faces/model-home.xhtml</from-view-id>
+        <from-view-id>/faces/view-home.xhtml</from-view-id>
         <navigation-case>
             <from-action>#{deleteCustomersBean.deleteCustomer}</from-action>
             <from-outcome>refresh</from-outcome>
-            <to-view-id>/faces/model-home.xhtml</to-view-id>
+            <to-view-id>/faces/view-home.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/faces/view-home.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{editCustomersBean.prepareEditPage}</from-action>
+            <from-outcome>edit-page</from-outcome>
+            <to-view-id>/faces/edit-customer.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/faces/edit-customer.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{editCustomersBean.updateCustomer}</from-action>
+            <from-outcome>home</from-outcome>
+            <to-view-id>/faces/view-home.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
     </navigation-rule>
 </faces-config>

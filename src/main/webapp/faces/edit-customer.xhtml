@@ -19,14 +19,13 @@
 
 <h:body style="background-color: #9a9a9a">
     <h:form id="form">
-
         <p:growl id="msgCreate" sticky="true" showDetail="true"/>
 
         <div class="ui-g">
             <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
                 <p:menubar>
-                    <p:menuitem id="menuItemHead" url="#{request.contextPath}/faces/register-edit.xhtml">
-                        <h2 style="text-align: center; color: white">Create Customer</h2>
+                    <p:menuitem id="menuItemHead" url="#{request.contextPath}/faces/edit-customer.xhtml">
+                        <h2 style="text-align: center; color: white">Update Customer</h2>
                     </p:menuitem>
                 </p:menubar>
             </div>
@@ -34,14 +33,14 @@
 
         <div class="ui-g">
             <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
-                <p:panel header="Select a Location">
+                <p:panel header="Edit Customer">
                     <h:panelGrid columns="1" cellpadding="5">
 
                         <div class="ui-g">
                             <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
                                 <h:outputText for="inputName" value="Customer Name : "/>
                                 <p:inputText id="inputName"
-                                             value="#{createCustomerBean.customerWrapper.customer.customerName}"
+                                             value="#{editCustomersBean.customerWrapper.customer.customerName}"
                                              required="true"
                                              placeholder="type your name">
                                     <f:validateLength minimum="3"/>
@@ -49,38 +48,38 @@
 
                                 <h:outputText for="inputcountry" value="Country : "/>
                                 <p:selectOneMenu id="inputcountry" required="true"
-                                                 value="#{createCustomerBean.customerWrapper.customer.country}"
+                                                 value="#{editCustomersBean.customerWrapper.customer.country}"
                                                  style="width:192px">
-                                    <p:ajax listener="#{createCustomerBean.onCountryChange}"
+                                    <p:ajax listener="#{editCustomersBean.onCountryChange}"
                                             update="inputCity"/>
                                     <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true"/>
-                                    <f:selectItems value="#{createCustomerBean.countries}"/>
+                                    <f:selectItems value="#{editCustomersBean.countries}"/>
                                 </p:selectOneMenu>
 
                                 <h:outputText for="inputCity" value="City : "/>
                                 <p:selectOneMenu id="inputCity"
-                                                 value="#{createCustomerBean.customerWrapper.customer.state}"
+                                                 value="#{editCustomersBean.customerWrapper.customer.state}"
                                                  required="true" style="width:192px">
-                                    <f:selectItem itemLabel="Select City" itemValue="" noSelectionOption="true"/>
-                                    <f:selectItems value="#{createCustomerBean.cities}"/>
+                                    <f:selectItem itemLabel="#{editCustomersBean.customerWrapper.customer.state}"
+                                                  itemValue="#{editCustomersBean.customerWrapper.customer.state}"/>
+                                    <f:selectItems value="#{editCustomersBean.cities}"/>
                                 </p:selectOneMenu>
 
                                 <h:outputText for="inputAddress" value="Address : "/>
                                 <p:inputText id="inputAddress"
-                                             value="#{createCustomerBean.customerWrapper.customer.address}"
+                                             value="#{editCustomersBean.customerWrapper.customer.address}"
                                              placeholder="type your address" required="true">
                                     <f:validateLength minimum="3"/>
                                 </p:inputText>
 
-
                                 <h:outputText for="inputTaxNum" value="Tax Number : "/>
                                 <p:inputText id="inputTaxNum"
-                                             value="#{createCustomerBean.customerWrapper.customerTax.taxNum}"
+                                             value="#{editCustomersBean.customerWrapper.customerTax.taxNum}"
                                              placeholder="type tax number"/>
 
                                 <h:outputText for="inputIsActive" value="Active : "/>
                                 <p:selectBooleanCheckbox id="inputIsActive" required="true"
-                                                         value="#{createCustomerBean.customerWrapper.customerStatus.active}"/>
+                                                         value="#{editCustomersBean.customerWrapper.customerStatus.active}"/>
                             </div>
                         </div>
                     </h:panelGrid>
@@ -88,13 +87,13 @@
                     <h:form id="uploadFileForm" enctype="multipart/form-data">
                         <p:growl id="msgFile" sticky="true" showDetail="true"/>
                         <h:outputText for="uploadLogo" value="Upload Logo :  "/>
-                        <p:fileUpload id="uploadLogo" listener="#{createCustomerBean.upload}"
+                        <p:fileUpload id="uploadLogo" listener="#{editCustomersBean.upload}"
                                       auto="true" update="msgFile"/>
                         <br/>
                     </h:form>
 
                     <p:separator/>
-                    <p:commandButton value="Submit" action="#{createCustomerBean.saveCustomer}" icon="pi pi-check"
+                    <p:commandButton value="Submit" action="#{editCustomersBean.updateCustomer}" icon="pi pi-check"
                                      update="msgCreate"/>
 
                 </p:panel>
@@ -102,7 +101,5 @@
         </div>
 
     </h:form>
-
-
 </h:body>
 </html>

@@ -229,10 +229,12 @@ public class CreateCustomerBean implements Serializable {
     }
 
     public void onCountryChange() {
-        if (this.customerWrapper.getCustomer().getCountry() != null && !this.customerWrapper.getCustomer().getCountry().equals(""))
+        if (this.customerWrapper.getCustomer().getCountry() != null &&
+                !this.customerWrapper.getCustomer().getCountry().equals("")) {
             this.cities = this.data.get(this.customerWrapper.getCustomer().getCountry());
-        else
+        } else {
             this.cities = new HashMap<>();
+        }
     }
 
     public UploadedFile getFile() {
@@ -258,6 +260,7 @@ public class CreateCustomerBean implements Serializable {
     }
 
     public String saveCustomer() {
+        FacesContext context = FacesContext.getCurrentInstance();
         if (isCustomerFieldValid()) {
             Long customerID = saveCustomerDetails();
             saveCustomerStatus(customerID);
@@ -266,12 +269,14 @@ public class CreateCustomerBean implements Serializable {
 
             FacesMessage msg = new FacesMessage("Successful",
                     "Add Customer " + this.customerWrapper.getCustomer().getCustomerName());
-            FacesContext.getCurrentInstance().addMessage(null, msg);
+            context.addMessage(null, msg);
 
         } else {
             FacesMessage msg = new FacesMessage("Wrong", "All require field must fills.");
-            FacesContext.getCurrentInstance().addMessage(null, msg);
+            context.addMessage(null, msg);
         }
+
+        context.getExternalContext().getFlash().setKeepMessages(true);
 
         return "home";
     }

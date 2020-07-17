@@ -19,13 +19,12 @@
 
 <h:body style="background-color: #9a9a9a">
     <h:form id="form">
-
         <p:growl id="msgCreate" sticky="true" showDetail="true"/>
 
         <div class="ui-g">
             <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
                 <p:menubar>
-                    <p:menuitem id="menuItemHead" url="#{request.contextPath}/faces/register-edit.xhtml">
+                    <p:menuitem id="menuItemHead" url="#{request.contextPath}/faces/register-customer.xhtml">
                         <h2 style="text-align: center; color: white">Create Customer</h2>
                     </p:menuitem>
                 </p:menubar>
@@ -34,7 +33,7 @@
 
         <div class="ui-g">
             <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12">
-                <p:panel header="Select a Location">
+                <p:panel header="Register Customer Form">
                     <h:panelGrid columns="1" cellpadding="5">
 
                         <div class="ui-g">
@@ -72,7 +71,6 @@
                                     <f:validateLength minimum="3"/>
                                 </p:inputText>
 
-
                                 <h:outputText for="inputTaxNum" value="Tax Number : "/>
                                 <p:inputText id="inputTaxNum"
                                              value="#{createCustomerBean.customerWrapper.customerTax.taxNum}"
@@ -83,6 +81,7 @@
                                                          value="#{createCustomerBean.customerWrapper.customerStatus.active}"/>
                             </div>
                         </div>
+
                     </h:panelGrid>
 
                     <h:form id="uploadFileForm" enctype="multipart/form-data">
@@ -102,7 +101,5 @@
         </div>
 
     </h:form>
-
-
 </h:body>
 </html>

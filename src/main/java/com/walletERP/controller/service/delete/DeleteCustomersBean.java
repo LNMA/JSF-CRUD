@@ -6,6 +6,7 @@ import com.walletERP.model.entity.Customer;
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import java.io.Serializable;
@@ -32,15 +33,18 @@ public class DeleteCustomersBean implements Serializable {
     }
 
     public String deleteCustomer() {
-        String customerID = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("customerIdDelete");
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        String customerID = externalContext.getRequestParameterMap().get("customerIdDelete");
         if (customerID != null) {
             this.customer.setCustomerID(Long.valueOf(customerID));
             this.customerDAO.deleteCustomerByID(customer);
         }
 
+        FacesContext context = FacesContext.getCurrentInstance();
         FacesMessage msg = new FacesMessage("Successful", "User delete successfully.");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+        context.addMessage(null, msg);
+        context.getExternalContext().getFlash().setKeepMessages(true);
 
-        return "refresh?faces-redirect = true";
+        return "refresh";
     }
 }
