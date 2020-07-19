@@ -16,4 +16,6 @@
 9. run it.
 
 ***Please note that the maven will take few time to get the dependencies from central repository.***
+
+*Issue#1: JDK 8u261 WILL NOT WORK WITH GLASSFISH 5.1.0, JDK UNTIL RELEASE 8u251 WILL WORK FINE*
  
