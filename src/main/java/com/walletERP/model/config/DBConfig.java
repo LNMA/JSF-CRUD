@@ -16,9 +16,9 @@ public class DBConfig {
         org.apache.tomcat.jdbc.pool.DataSource dataSource = new org.apache.tomcat.jdbc.pool.DataSource();
         PoolProperties p = new PoolProperties();
         p.setDriverClassName("com.mysql.cj.jdbc.Driver"); //TODO : please add suitable class driver for database
-        p.setUrl("jdbc:mysql://localhost:3306/wallet-erp?useSSL=false"); //TODO : please add schema url
-        p.setUsername("${your username}"); //TODO : add your database account username
-        p.setPassword("${your password}"); //TODO : add your database account password
+        p.setUrl("jdbc:mysql://localhost:3306/wallet-erp?allowPublicKeyRetrieval=true&useSSL=false"); //TODO : please add schema url
+        p.setUsername("${db.username}"); //TODO : add your database account username
+        p.setPassword("${db.password}"); //TODO : add your database account password
         p.setMaxActive(100);
         p.setMaxIdle(100);
         p.setMinIdle(10);

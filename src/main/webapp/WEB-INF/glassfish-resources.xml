@@ -3,7 +3,7 @@
 <resources>
     <jdbc-connection-pool name="myPool"
                           res-type="javax.sql.DataSource"
-                          datasource-classname="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+                          datasource-classname="org.apache.tomcat.jdbc.pool.DataSource"
                           driver-classname="com.mysql.cj.jdbc.Driver"
                           steady-pool-size="10"
                           max-pool-size="100"
@@ -14,9 +14,9 @@
                           is-connection-validation-required="false"
                           connection-validation-method="auto-commit"
                           fail-all-connections="false">
-        <property name="URL" value="jdbc:mysql://localhost:3306/wallet-erp?useSSL=false"/>
-        <property name="User" value="${your db username}"/> <!--TODO : your username-->
-        <property name="Password" value="${your db password}"/> <!--TODO : your password-->
+        <property name="URL" value="jdbc:mysql://localhost:3306/wallet-erp?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;user=root&amp;password=rootpassword"/> <!--TODO : your url -->
+        <property name="User" value="${db.username}"/> <!--TODO : your username-->
+        <property name="Password" value="${db.password}"/> <!--TODO : your password-->
         <property name="MaxStatements" value="200"/>
         <property name="ImplicitCachingEnabled" value="true"/>
     </jdbc-connection-pool>

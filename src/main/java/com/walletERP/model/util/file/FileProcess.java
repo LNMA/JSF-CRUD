@@ -41,8 +41,8 @@ public class FileProcess implements Serializable {
     public byte[] uploadDefaultImg() {
         byte[] bytes = null;
         try {
-            //TODO change path to your path
-            bytes = this.readAPicture("${your path}\\Wallet_ERP-Task\\src\\main\\resources\\img\\no-logo.png");
+            //TODO change image path to your path
+            bytes = this.readAPicture("${image.path}\\Wallet_ERP-Task\\src\\main\\resources\\img\\no-logo.png");
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

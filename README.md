@@ -15,7 +15,4 @@
 8. Mapping spring configuration classes, in intellij you can find it at project `structure/facets/spring/add` then add it all, also make sure there is no duplicates.
 9. run it.
 
-***Please note that the maven will take few time to get the dependencies from central repository.***
-
-*Issue#1: JDK 8u261 WILL NOT WORK WITH GLASSFISH 5.1.0, JDK UNTIL RELEASE 8u251 WILL WORK FINE*
- 
+***Please note that the maven will take few time to get the dependencies from central repository.*** 
