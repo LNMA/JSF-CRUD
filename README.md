@@ -1,4 +1,4 @@
-# Wallet_ERP-Task
+# JSF-CRUD
 
 - To create, retrieve, update, delete virtual customer (CRUD) using:
 >`JSF 2.3, primeface, spring context, spring jdbc, tomcat jdbc, mysql, glassfish 5.1.0.`
